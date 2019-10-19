@@ -47,14 +47,14 @@ router.post('/add', (req,res)=>{
     if(err.length >0){
         res.render('addemployee',{
             err,
-            employeeNumber,
-            lastName,
+            jobTitle,
             firstName,
+            lastName,
+            officeCode,
+            employeeNumber,
+            reportsTo,
             extension,
             email,
-            officeCode,
-            reportsTo,
-            jobTitle
 
         })
     } else {
