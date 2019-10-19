@@ -58,6 +58,7 @@ router.post('/add', (req,res)=>{
 
         })
     } else {
+
         //Insert into  table
         Employees.create({
         employeeNumber,
@@ -73,5 +74,6 @@ router.post('/add', (req,res)=>{
         .catch(err => console.log(err));
     }
 })
+
 
 module.exports = router;
