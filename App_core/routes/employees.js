@@ -2,6 +2,9 @@ const express  = require('express');
 const router = express.Router();
 const db = require('../config/db');
 const Employees = require('../models/employees');
+const Sequlize = require('sequelize');
+const Op = Sequlize.Op;
+
 
 router.get('/' ,(req,res) => 
 Employees.findAll()
