@@ -26,9 +26,11 @@ app.use('/products' ,require('./routes/products'));
 // Customers route
 app.use('/customers' ,require('./routes/customers'));
 
-
 // Index route
-app.get('/', (req, res) => res.render('index' ,{ layout: 'landing'}));
+app.get('/index', (req, res) => res.render('index' ,{ layout: 'landing'}));
+
+// Log in route
+app.get('/', (req, res) => res.render('login' ,{ layout: 'login'}));
 
 
 const PORT = process.env.PORT || 8080;
