@@ -1,0 +1,30 @@
+<section id="gigs" class="container">
+    <h1>Employees</h1>
+
+
+    <div>
+        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
+    </div>
+    <br><br>
+
+    {{#each employees}}
+        <div class="gig">
+        <h3>Job title : {{jobTitle}}</h3>
+        <h2>Name: {{firstName}} {{lastName}}</h2>
+        <p>{{productDescription}}</p>
+        <ul>
+            <li>E-mail: <br>{{email}}</li>
+            <li>Office: <br>{{officeCode}}</li>
+            <li>Reports to:<br> {{reportsTo}}</li>
+        </ul>
+        <div class="tech">
+            <small>Employee number: <span>{{employeeNumber}}</span> Extension: <span>{{extension}}</span></small>
+        </div>
+        </div>
+    {{else}}
+        <p>No employees available.</p>
+    {{/each}}
+
+
+    
+  </section>
