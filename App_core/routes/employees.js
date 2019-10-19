@@ -75,5 +75,14 @@ router.post('/add', (req,res)=>{
     }
 })
 
+// Search for employees
+router.get('/search', (req,res)=>{
+    const {term} = req.query
+ 
+    Employees.findAll({where: {employeeNumber: {[Op.like]: '%' + term + '%' } } })
+    .then(employees => res.render('employees', { employees }))
+    .catch(err => console.log(err));
+ })
+
 
 module.exports = router;

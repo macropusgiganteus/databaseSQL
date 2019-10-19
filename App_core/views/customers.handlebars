@@ -1,0 +1,32 @@
+<section id="gigs" class="container">
+    <h1>Customers</h1>
+
+
+    <div>
+        <a href="/customers/add" class="btn btn-reverse">Add a customer</a>
+    </div>
+    <br><br>
+
+    {{#each customers}}
+        <div class="gig">
+        <h2>Customer Name: {{customerName}}</h2>
+        <h3>Customer Number: {{customerNumber}}</h3>
+        <p>Address line 1: {{addressLine1}}</p>
+        <p>Address line 2: {{addressLine2}}</p>
+        <p>{{city}} {{state}} {{postalCode}}</p> 
+        <p>{{country}}</p>
+        <ul>
+            <li>Phone: <br>{{phone}}</li>
+            <li>Contact: <br>{{contactFirstName}} {{contactLastName}}</li>
+        </ul>
+        <div class="tech">
+            <small>salesRepEmployeeNumber: <span>{{salesRepEmployeeNumber}}</span> Credit Limit: <span>{{creditLimit}}</span></small>
+        </div>
+        </div>
+    {{else}}
+        <p>No employees available.</p>
+    {{/each}}
+
+
+    
+  </section>
