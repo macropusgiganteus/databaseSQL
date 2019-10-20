@@ -4,8 +4,11 @@
 https://docs.google.com/document/d/19J0mVtpp-ti7XD2dhWb6ttPWVcdd5M42ASuN0aTe91U/edit
 
 Basic requirements
+
 X_[A] The website has products catalog which categorizes by product vendors and product scale. The catalog is displayed publicly.
+
 X_[B] Employees can log-in with a unique employee number and password. Any password in the system mustn’t be stored as plaintext.
+
 X_[C] Employees in the sales department, who have “sale” in their job title can access a stock-in system (ระบบรับสินค้าเข้า), which records date, and amount of product in each lot as well as create, update, and delete products.
 X_[D] When customers buy any product will get 3 member points every $100 spent. The system must show the total points they have and how many points get from each order.
 X_[E] In this application, employees will place an order for customers by adding products to one order and enter a customer who buys it. Every order will have “in progress” as a default status. If customers have a preferred shipping date, it will set in “required date”. Employees can edit some columns later, which are shipped date, status, and comments.
