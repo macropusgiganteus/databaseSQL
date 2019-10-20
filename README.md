@@ -17,7 +17,7 @@ X_[D]
 
 X_[E] 
 
-O_[F] --> Add customer function
+O_[F] 
 
 X_[G] 
 
