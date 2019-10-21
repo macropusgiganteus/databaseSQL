@@ -61,7 +61,6 @@ router.post('/add', (req,res)=>{
 
         })
     } else {
-
         //Insert into  table
         Employees.create({
         employeeNumber,
@@ -73,7 +72,7 @@ router.post('/add', (req,res)=>{
         reportsTo,
         jobTitle
         })
-        .then(employee =>redirect('/employees'))
+        .then(employee =>res.redirect('/employees'))
         .catch(err => console.log(err));
     }
 })
@@ -87,5 +86,28 @@ router.get('/search', (req,res)=>{
     .catch(err => console.log(err));
  })
 
+ // Delete employee
+ router.get('/delete', (req,res)=>{
+     let deleteNumber = 
+ Employees.destroy({
+    where: {
+        employeeNumber: deleteNumber
+    }
+  })
+  .then(employee =>res.redirect('/employees'))
+  .catch(err => console.log(err));
+})
 
+ // Update employee
+ router.get('/update', (req,res)=>{
+ Post.update({
+    updatedAt: null,
+  }, {
+    where: {
+      deletedAt: {
+        [Op.ne]: null
+      }
+    }
+  });
+})
 module.exports = router;

@@ -1,0 +1,76 @@
+<section id="add" class="container">
+    <div class="form-wrap">
+      <h1>Add A Customer</h1>
+      {{#each err}}
+        <div class="error">
+          <p>{{text}}</p>
+        </div>
+      {{/each}}
+
+
+      <form action="/customers/add" method="POST">
+        <div class="input-group">
+          <label for="title">Customer Number</label>
+          <input type="number" name="customerNumber" id="title" class="input-box" placeholder=""
+            maxlength="50" value={{customerNumber}}>
+        </div>
+        <div class="input-group">
+          <label for="technologies">Name</label>
+          <input type="text" name="customerName" id="technologies" class="input-box" placeholder=""
+            maxlength="50" value={{customerName}}>
+        </div>
+        <div class="input-group">
+          <label for="technologies">Contact FirstName</label>
+          <input type="text" name="contactFirstName" id="technologies" class="input-box" placeholder=""
+            maxlength="50" value={{contactFirstName}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">Contact LastName</label>
+          <input type="text" name="contactLastName" id="budget" class="input-box" placeholder="" 
+            value={{contactLastName}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">phone</label>
+          <input type="text" name="phone" id="budget" class="input-box" placeholder="" value={{phone}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">address Line 1</label>
+          <input type="text" name="addressLine1" id="budget" class="input-box" placeholder="" value={{addressLine1}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">address Line 2</label>
+          <input type="text" name="addressLine2" id="budget" class="input-box" placeholder="" value={{addressLine2}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">City</label>
+          <input type="text" name="city" id="budget" class="input-box" placeholder="" value={{city}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">State</label>
+          <input type="text" name="state" id="title" class="input-box" placeholder="" 
+          value={{state}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">postalCode</label>
+          <input type="text" name="postalCode" id="budget" class="input-box" placeholder="" 
+          value={{postalCode}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">Country</label>
+          <input type="text" name="country" id="budget" class="input-box" placeholder="" 
+          value={{country}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">Sales Replace Employee Number</label>
+          <input type="number" name="salesRepEmployeeNumber" id="budget" class="input-box" placeholder="" 
+          value={{salesRepEmployeeNumber}}>
+        </div>
+        <div class="input-group">
+          <label for="budget">creditLimit</label>
+          <input type="number" name="creditLimit" id="budget" class="input-box" placeholder="" 
+          value={{creditLimit}}>
+        </div>
+        <input type="submit" value="Add Customer" class="btn btn-reverse">
+      </form>
+    </div>
+  </section>

@@ -21,17 +21,18 @@ router.get('/add', (req,res) => res.render('addcustomer'));
 
 // Add a customer
 router.post('/add', (req,res)=>{
+    
     let { customerNumber,customerName,contactLastName,contactFirstName,
 
-        phone,addressLine1,addressLine2,city,state,postalCode,
+        phone,addressLine1,addressLine2,state,city,postalCode,
         
         country,salesRepEmployeeNumber,creditLimit  } = req.body;
+        console.log(req.body);
     let err = [];
-
 
     // Validate field
     if(!customerNumber){
-        err.push({text : "Please add an Customer Number"});
+        err.push({text : "Please add Customer Number"});
     }
     if(!customerName){
         err.push({text : "Please add Customer Name"});
@@ -40,10 +41,10 @@ router.post('/add', (req,res)=>{
         err.push({text : "Please add Contact Last Name"});
     }
     if(!contactFirstName){
-        err.push({text : "Please add an Contact First Name"});
+        err.push({text : "Please add Contact First Name"});
     }
     if(!phone){
-        err.push({text : "Please add an Phone Number"});
+        err.push({text : "Please add Phone Number"});
     }
     if(!addressLine1){
         err.push({text : "Please add Address"});
@@ -58,6 +59,7 @@ router.post('/add', (req,res)=>{
     // Check for error
     if(err.length >0){
         res.render('addcustomer',{
+            err,
             customerNumber,
             customerName,
             contactLastName,
@@ -73,7 +75,9 @@ router.post('/add', (req,res)=>{
             creditLimit
         })
     } else {
-
+        if(!state){
+            state = '';
+        }
         //Insert into  table
         Customers.create({
             customerNumber,
@@ -90,7 +94,7 @@ router.post('/add', (req,res)=>{
             salesRepEmployeeNumber,
             creditLimit
         })
-        .then(customers =>redirect('/customers'))
+        .then(customers =>res.redirect('/customers'))
         .catch(err => console.log(err));
     }
 })
@@ -103,5 +107,7 @@ router.get('/search', (req,res)=>{
     .then(customers => res.render('customers', { customers }))
     .catch(err => console.log(err));
  })
+
+ 
 
 module.exports = router;
