@@ -23,33 +23,33 @@ router.get('/add', (req,res) => res.render('addemployee'))
 // Add an employee
 router.post('/add', (req,res)=>{
     let { employeeNumber,lastName,firstName,extension,email,officeCode,reportsTo,jobTitle  } = req.body;
-    let err = [];
+    let errs = [];
 
-
+    console.log(req.body);
     // Validate field
     if(!employeeNumber){
-        err.push({text : "Please add an employee number"});
+        errs.push({text : "Please add an employee number"});
     }
     if(!lastName){
-        err.push({text : "Please add lastName"});
+        errs.push({text : "Please add lastName"});
     }
     if(!firstName){
-        err.push({text : "Please add firstName"});
+        errs.push({text : "Please add firstName"});
     }
     if(!email){
-        err.push({text : "Please add an email"});
+        errs.push({text : "Please add an email"});
     }
     if(!officeCode){
-        err.push({text : "Please add an officeCode"});
+        errs.push({text : "Please add an officeCode"});
     }
     if(!jobTitle){
-        err.push({text : "Please add jobTitle"});
+        errs.push({text : "Please add jobTitle"});
     }
 
     // Check for error
-    if(err.length >0){
+    if(errs.length >0){
         res.render('addemployee',{
-            err,
+            errs,
             jobTitle,
             firstName,
             lastName,
@@ -61,6 +61,7 @@ router.post('/add', (req,res)=>{
 
         })
     } else {
+        let errs = [];
         //Insert into  table
         Employees.create({
         employeeNumber,
@@ -73,9 +74,24 @@ router.post('/add', (req,res)=>{
         jobTitle
         })
         .then(employee =>res.redirect('/employees'))
-        .catch(err => console.log(err));
-    }
-})
+        .catch(err =>{
+            errs.push({text : "Employee number already exists"})
+            res.render('addemployee',{
+                errs,
+                jobTitle,
+                firstName,
+                lastName,
+                officeCode,
+                employeeNumber,
+                reportsTo,
+                extension,
+                email
+            }
+         )
+         console.log(err);
+        });
+    }})     
+       
 
 // Search for employees
 router.get('/search', (req,res)=>{
@@ -110,4 +126,5 @@ router.get('/search', (req,res)=>{
     }
   });
 })
+
 module.exports = router;

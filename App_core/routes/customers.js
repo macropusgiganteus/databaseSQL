@@ -28,38 +28,38 @@ router.post('/add', (req,res)=>{
         
         country,salesRepEmployeeNumber,creditLimit  } = req.body;
         console.log(req.body);
-    let err = [];
+    let errs = [];
 
     // Validate field
     if(!customerNumber){
-        err.push({text : "Please add Customer Number"});
+        errs.push({text : "Please add Customer Number"});
     }
     if(!customerName){
-        err.push({text : "Please add Customer Name"});
+        errs.push({text : "Please add Customer Name"});
     }
     if(!contactLastName){
-        err.push({text : "Please add Contact Last Name"});
+        errs.push({text : "Please add Contact Last Name"});
     }
     if(!contactFirstName){
-        err.push({text : "Please add Contact First Name"});
+        errs.push({text : "Please add Contact First Name"});
     }
     if(!phone){
-        err.push({text : "Please add Phone Number"});
+        errs.push({text : "Please add Phone Number"});
     }
     if(!addressLine1){
-        err.push({text : "Please add Address"});
+        errs.push({text : "Please add Address"});
     }
     if(!city){
-        err.push({text : "Please add City"});
+        errs.push({text : "Please add City"});
     }
     if(!country){
-        err.push({text : "Please add Country"});
+        errs.push({text : "Please add Country"});
     }
 
     // Check for error
-    if(err.length >0){
+    if(errs.length >0){
         res.render('addcustomer',{
-            err,
+            errs,
             customerNumber,
             customerName,
             contactLastName,
@@ -75,9 +75,8 @@ router.post('/add', (req,res)=>{
             creditLimit
         })
     } else {
-        if(!state){
-            state = '';
-        }
+        let errs = [];
+
         //Insert into  table
         Customers.create({
             customerNumber,
@@ -95,7 +94,27 @@ router.post('/add', (req,res)=>{
             creditLimit
         })
         .then(customers =>res.redirect('/customers'))
-        .catch(err => console.log(err));
+        .catch(err =>{
+            errs.push({text : "Customer number already exists"})
+            res.render('addcustomer',{
+                errs,
+                customerNumber,
+                customerName,
+                contactLastName,
+                contactFirstName,
+                phone,
+                addressLine1,
+                addressLine2,
+                city,
+                state,
+                postalCode,
+                country,
+                salesRepEmployeeNumber,
+                creditLimit
+            }
+         )
+         console.log(err);
+        });
     }
 })
 
