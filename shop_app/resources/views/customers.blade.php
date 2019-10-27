@@ -1,5 +1,5 @@
-@extends('layouts.mainLayout')
-
+@extends('layouts.AllLayout')
+@section ('title','SHOP')
 @section('content')
 <section id="gigs" class="container">
     <form action="/customers/search" class="search-form">
