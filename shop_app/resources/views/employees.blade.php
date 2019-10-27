@@ -1,5 +1,5 @@
-@extends('layouts.mainLayout')
-
+@extends('layouts.AllLayout')
+@section ('title','SHOP')
 @section('content')
 <section id="gigs" class="container">
     <form action="/employees/search" class="search-form">
@@ -10,13 +10,14 @@
 </section>
 <section id="gigs" class="container">
     <h1>Employees</h1>
-
-
     <div>
-        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
+        <a href="/" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
-
+    <div class="gig">
+    <h3>Job title :</h3>
+    <h2>Name :</h2>
+    </div>
 
     
   </section>
