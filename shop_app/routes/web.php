@@ -18,12 +18,23 @@ Route::get('/main', function () {
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/products', function () {
-    return view('products');
-});
+
+Route::get('/products', 'ProductsController@index');
+
+Route::get('/products/110', 'ProductsController@scale_110');
+
 Route::get('/customers', function () {
     return view('customers');
 });
+
+Route::get('/products/add', function () {
+    return view('addproducts');
+});
+
 Route::get('/employees', function () {
     return view('employees');
+});
+
+Route::get('/payments', function () {
+    return view('payments');
 });
