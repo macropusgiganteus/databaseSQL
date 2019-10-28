@@ -24,6 +24,10 @@ Route::get('/products', function () {
 Route::get('/customers', function () {
     return view('customers');
 });
-Route::get('/employees', function () {
-    return view('employees');
+Route::get('/employees', 'EmployeesController@index' );
+Route::get('/employees/add', function () {
+    return view('addEmployees');
+});
+Route::get('/show', function(){
+    return App\Employees::all();
 });
