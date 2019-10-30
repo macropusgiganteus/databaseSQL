@@ -29,6 +29,7 @@
           <div class="dropdown-content">
             <a href="/employees">Employee</a>
             <a href="/customers">Customer</a>
+            <a href="/stock/create">Stock In</a>
           </div>
         </li> 
         <li>
