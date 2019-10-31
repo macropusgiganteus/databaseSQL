@@ -27,12 +27,17 @@ Route::get('/customers', function () {
     return view('customers');
 });
 
+
 Route::get('/products/add', function () {
     return view('addproducts');
 });
 
-Route::get('/employees', function () {
-    return view('employees');
+Route::get('/employees', 'EmployeesController@index' );
+Route::get('/employees/add', function () {
+    return view('addEmployees');
+});
+Route::get('/show', function(){
+    return App\Employees::all();
 });
 
 Route::get('/payments', function () {
