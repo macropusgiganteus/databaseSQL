@@ -17,21 +17,23 @@
     <li class="dropdown"> 
           <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
           <div class="dropdown-content">
-            <a href="/products/110" class="btn btn-reverse">1:10</a>
-            <a class="btn btn-reverse">1:12</a>
-            <a class="btn btn-reverse">1:18</a>
-            <a class="btn btn-reverse">1:24</a>
-            <a class="btn btn-reverse">1:32</a>
-            <a class="btn btn-reverse">1:50</a>
-            <a class="btn btn-reverse">1:700</a>
-            <a class="btn btn-reverse">1:72</a>
+           @foreach ($products as $product)
+            <a href="/products" class="btn btn-reverse">{{$product['productScale']}}</a>
+            <!-- <a href="/products" class="btn btn-reverse">{{$product['productScale']}}</a> -->
+            <!-- <a href="/products" class="btn btn-reverse">1:18</a>
+            <a href="/products/110" class="btn btn-reverse">1:24</a>
+            <a href="/products/110" class="btn btn-reverse">1:32</a>
+            <a href="/products/110" class="btn btn-reverse">1:50</a>
+            <a href="/products/110" class="btn btn-reverse">1:700</a>
+            <a href="/products/110" class="btn btn-reverse">1:72</a> -->
+           @endforeach 
           </div>
     </li> 
     <li class="dropdown"> 
           <h4 class="dropbtn"><a class="btn btn-reverse">Product Vendor</a></h4>
           <div class="dropdown-content">
             <a class="btn btn-reverse">Welly Diecast Productions</a>
-            <a class="btn btn-reverse">Unimax Art Galleries</a>
+            <a class="btn btn-reverse">Unimax Art Galleries</
             <a class="btn btn-reverse">Studio M Art Models</a>
             <a class="btn btn-reverse">Second Gear Diecast</a>
             <a class="btn btn-reverse">Red Start Diecast</a>
