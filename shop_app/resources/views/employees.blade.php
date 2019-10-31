@@ -11,15 +11,30 @@
 <section id="gigs" class="container">
     <h1>Employees</h1>
     <div>
-        <a href="/" class="btn btn-reverse">Add an employee</a>
+        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
-    <div class="gig">
-    <h3>Job title :</h3>
-    <h2>Name :</h2>
-    </div>
-
+    @foreach ($employees as $employee)
+    <div class="gig" >
+      <h3>Job title : {{$employee['jobTitle']}} </h3>
+      <h2>Name: {{$employee['firstName']}} {{$employee['lastName']}}</h2>
+     
+      <ul>
+          <li>E-mail: {{$employee['email']}}<br></li>
+          <li>Office:{{$employee['officeCode']}} <br></li>
+          <li>Reports to: {{$employee['reportsTo']}}<br></li>
+      </ul>
+      <div class="tech">
+          <small>Employee number:<span> {{$employee['employeeNumber']}}</span> Extension: <span>{{$employee['extension']}}</span></small>
+      </div><br>
+     
     
+    </div>
+    @endforeach
+    
+    
+
+ 
   </section>
 
 @endsection
