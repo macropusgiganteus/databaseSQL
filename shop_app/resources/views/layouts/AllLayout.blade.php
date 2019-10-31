@@ -34,6 +34,9 @@
           </div>
         </li> 
         <li>
+          <a href="/payments"><span class="fas fa-cart-plus"></span></a>
+        </li> 
+        <li>
           <a href="/">Log out</a>
         </li>
 
