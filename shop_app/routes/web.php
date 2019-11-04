@@ -18,13 +18,24 @@ Route::get('/main', function () {
 Route::get('/', function () {
     return view('login');
 });
-Route::get('/products', function () {
-    return view('products');
-});
+
+Route::get('/products', 'ProductsController@index');
+
+Route::get('/products/110', 'ProductsController@scale_110');
+
 Route::get('/customers', function () {
     return view('customers');
 });
+
 Route::get('/stock/index', 'StockInController@index');
+
+
+
+Route::get('/products/add', function () {
+    return view('addproducts');
+});
+
+
 Route::get('/employees', 'EmployeesController@index' );
 
 Route::get('/employees/add', function () {
@@ -34,4 +45,11 @@ Route::get('/employees/add', function () {
 Route::get('/show', function(){
     return App\Employees::all();
 });
+
 Route::resource('stock','StockInController');
+
+
+Route::get('/payments', function () {
+    return view('payments');
+});
+

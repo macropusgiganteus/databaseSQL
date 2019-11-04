@@ -240,7 +240,8 @@ li a:hover, .dropdown:hover .dropbtn {
 }
 
 li.dropdown {
-  display: inline;
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
