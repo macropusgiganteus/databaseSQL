@@ -14,7 +14,8 @@ class StockInController extends Controller
      */
     public function index()
     {
-        return view('stock.create');
+        $stock = StockIn::all()->toArray();
+        return view('stock.index', compact('stock'));
     }
 
     /**
@@ -40,7 +41,7 @@ class StockInController extends Controller
             'productID' => $request->get('productID'),
             'amount' => $request->get('amount')] );
        $stock->save();
-        return redirect()->route('stock.create')->with('success','saved!!!');
+        return redirect()->route('stock.index')->with('success','New products have been added.');
     }
 
     /**
@@ -85,6 +86,8 @@ class StockInController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $stock = StockIn::find($id);
+        $stock->delete();
+        return redirect()->route('stock.index')->with('success','This products have been deleted!');
     }
 }

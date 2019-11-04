@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <link rel="stylesheet" href="/css/style.css">
   <title>@yield('title')</title>
@@ -27,11 +28,11 @@
           <a href="/products">All Product</a>
         </li>
         <li class="dropdown"> 
-          <h4 class="dropbtn">Manage</h4>
+          <p class="dropbtn">Manage</p>
           <div class="dropdown-content">
             <a href="/employees">Employee</a>
             <a href="/customers">Customer</a>
-            <a href="/stock/create">Stock In</a>
+            <a href="/stock/index">Stock In</a>
           </div>
         </li> 
         <li>

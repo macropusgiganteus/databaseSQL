@@ -5,7 +5,9 @@
 <section id="add" class="container">
         <div class="form-wrap">
           <h1>Product Stock In</h1>
-        
+          
+          
+          {{-- form --}}
           <form action="{{url('stock')}}" method="POST">
             {{csrf_field()}}
             <div class="input-group">
@@ -22,7 +24,27 @@
           </form>
         </div>
       </section>
-    
 
+    {{-- alert --}}
+
+  <section class="container">
+    @if(count($errors)>0)
+    <div class="w3-panel w3-red"align="center">
+      <ul>
+        @foreach ($errors->all() as $error)
+      <li>{{$error}}</li>   
+        @endforeach
+      </ul>
+    </div>
+    @endif
+
+
+    @if(\Session::has('success'))
+    <div class="w3-panel w3-green " align="center">
+    <p>{{\Session::get('success')}}</p>
+    </div>
+    @endif
+
+</section>
 
 @endsection
