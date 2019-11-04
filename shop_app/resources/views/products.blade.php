@@ -12,44 +12,33 @@
 
 
 <section id="gigs" class="container">
+  <form method="GET">
     <h1>Products</h1>
     <div>
     <li class="dropdown"> 
           <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
           <div class="dropdown-content">
-           @foreach ($products as $product)
-            <a href="/products" class="btn btn-reverse">{{$product['productScale']}}</a>
-            <!-- <a href="/products" class="btn btn-reverse">{{$product['productScale']}}</a> -->
-            <!-- <a href="/products" class="btn btn-reverse">1:18</a>
-            <a href="/products/110" class="btn btn-reverse">1:24</a>
-            <a href="/products/110" class="btn btn-reverse">1:32</a>
-            <a href="/products/110" class="btn btn-reverse">1:50</a>
-            <a href="/products/110" class="btn btn-reverse">1:700</a>
-            <a href="/products/110" class="btn btn-reverse">1:72</a> -->
+           @foreach ($products as $key => $scale)
+          <a href="{{action('ProductsController@scale',$key)}}">{{$key}}</a>
+            {{-- <a href="{{action('ProductsController@scale',$key)}}" class="btn btn-reverse" value="{{$key}}">{{$key}}</a> --}}
            @endforeach 
           </div>
     </li> 
+
     <li class="dropdown"> 
           <h4 class="dropbtn"><a class="btn btn-reverse">Product Vendor</a></h4>
           <div class="dropdown-content">
-            <a class="btn btn-reverse">Welly Diecast Productions</a>
-            <a class="btn btn-reverse">Unimax Art Galleries</
-            <a class="btn btn-reverse">Studio M Art Models</a>
-            <a class="btn btn-reverse">Second Gear Diecast</a>
-            <a class="btn btn-reverse">Red Start Diecast</a>
-            <a class="btn btn-reverse">Motor City Art Classics</a>
-            <a class="btn btn-reverse">Min Lin Diecast</a>
-            <a class="btn btn-reverse">Highway 66 Mini Classics</a>
-            <a class="btn btn-reverse">Gearbox Collectibles</a>
-            <a class="btn btn-reverse">Exoto Designs</a>
-            <a class="btn btn-reverse">Classic Metal Creations</a>
-            <a class="btn btn-reverse">Carousel DieCast Legends</a>
-            <a class="btn btn-reverse">Autoart Studio Design</a>
+           @foreach ($products1 as $key => $vendor)
+            <a href="" class="btn btn-reverse" value="{{$key}}">{{$key}}</a>
+           @endforeach 
           </div>
     </li> 
+    <a href="/products/add" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
-    @foreach ($products as $product)
+    @foreach ($products as $scale)
+      @foreach ($scale as $product)
+
     <div class="gig" >
       <h1>{{$product['productName']}}   ({{$product['productCode']}})</h1>
       <p>{{$product['productDescription']}}</p>
@@ -67,6 +56,8 @@
      
     
     </div>
+      @endforeach
     @endforeach
+    
   </section>
 @endsection
