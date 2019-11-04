@@ -21,7 +21,7 @@
             <td>{{$row['amount']}}</td>
             <td>{{$row['created_at']}}</td>
             <td>{{$row['updated_at']}}</td>
-            <td><a href="#" class="btn btn-primary">Edit</a></td>
+            <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td>
             <td>
             <form method="post" class="delete_form" action="{{action('StockInController@destroy', $row['id'])}}">
             {{csrf_field()}}

@@ -63,7 +63,8 @@ class StockInController extends Controller
      */
     public function edit($id)
     {
-        //
+        $stock = StockIn::find($id);
+        return view('stock.edit', compact('stock','id'));
     }
 
     /**
@@ -75,7 +76,12 @@ class StockInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,['productID' => 'required','amount' => 'required']);
+        $stock = StockIn::find($id);
+        $stock->productID = $request->get('productID');
+        $stock->amount = $request->get('amount');
+        $stock->save();
+        return redirect()->route('stock.index')->with('success','data has been updated.');
     }
 
     /**
