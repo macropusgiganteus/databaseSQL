@@ -19,8 +19,7 @@
           <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
           <div class="dropdown-content">
            @foreach ($products as $key => $scale)
-          <a href="{{action('ProductsController@scale',$key)}}">{{$key}}</a>
-            {{-- <a href="{{action('ProductsController@scale',$key)}}" class="btn btn-reverse" value="{{$key}}">{{$key}}</a> --}}
+            <a href="/products/scale" class="btn btn-reverse" value="{{$key}}">{{$key}}</a>
            @endforeach 
           </div>
     </li> 
