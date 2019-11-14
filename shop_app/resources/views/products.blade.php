@@ -15,47 +15,41 @@
   <form method="GET">
     <h1>Products</h1>
     <div>
-    <li class="dropdown"> 
-          <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
-          <div class="dropdown-content">
-           @foreach ($products as $key => $scale)
-            <a href="/products/scale" class="btn btn-reverse" value="{{$key}}">{{$key}}</a>
-           @endforeach 
-          </div>
-    </li> 
-
-    <li class="dropdown"> 
-          <h4 class="dropbtn"><a class="btn btn-reverse">Product Vendor</a></h4>
-          <div class="dropdown-content">
-           @foreach ($products1 as $key => $vendor)
-            <a href="" class="btn btn-reverse" value="{{$key}}">{{$key}}</a>
-           @endforeach 
-          </div>
-    </li> 
-    <a href="/products/add" class="btn btn-reverse">Add product</a>
-    </div>
-    <br><br>
-    @foreach ($products as $scale)
-      @foreach ($scale as $product)
-
-    <div class="gig" >
-      <h1>{{$product['productName']}}   ({{$product['productCode']}})</h1>
-      <p>{{$product['productDescription']}}</p>
-     
-      <ul>
-          <li>In-stock: {{$product['quantityInStock']}}<br></li>
-          <li>Price: ${{$product['buyPrice']}} /ea<br></li>
-          <li>Vendor: {{$product['productVendor']}}<br></li>
-          <li>Scale: {{$product['productScale']}} <br></li>
-          <li>Line: {{$product['productLine']}} </li>
-      </ul>
-      <div class="tech">
-          <small>MSRP:<span> {{$product['MSRP']}}</span></small>
-      </div><br>
-     
     
-    </div>
-      @endforeach
+       <li class="dropdown" method="post"> 
+            <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
+            <div class="dropdown-content">
+                <a href="" class="btn btn-reverse" name="1:10">1:10</a>
+                <a href="" class="btn btn-reverse">1:12</a>
+                <a href="" class="btn btn-reverse">1:18</a>
+                <a href="" class="btn btn-reverse">1:24</a>
+                <a href="" class="btn btn-reverse">1:32</a>
+                <a href="" class="btn btn-reverse">1:50</a>
+                <a href="" class="btn btn-reverse">1:72</a>
+                <a href="" class="btn btn-reverse">1:700</a>
+            </div>
+      </li>  
+     
+ 
+   
+    <br><br>
+    
+    @foreach($products as $value)
+      <div class="gig" >
+        <div>
+            <center>   <h2>Products_Code : # {{$value->productCode}} </h2> </center>
+              <h3>Product Name : {{$value->productName}} </h3>
+                <ul>
+                  <li>Product Line : {{$value->productLine}}<br></li>
+                  <li>Product Scale : {{$value->productScale}}<br></li>
+                </ul>
+                <ul>
+                  <li>Description : {{$value->productDescription}}<br></li>
+                </ul>
+           
+               <br>
+        </div>
+      </div><br>
     @endforeach
     
   </section>

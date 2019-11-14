@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
 
+
   <link rel="stylesheet" href="/css/style.css">
   <title>SHOP</title>
 </head>
 
 <body>
-  <header>
+  <header class="inner">
     <h2><a href="/"><i class="fas fa-code"></i>
         SHOP</a></h2>
     <nav>
@@ -34,13 +35,30 @@
         <li>
           <a href="/">Log out</a>
         </li>
+
       </ul>
     </nav>
   </header>
-    
- @yield('content')
 
-  
+  <section id="gigs" class="container">
+    <form action="/employees/search" class="search-form">
+      <i class="fas fa-search"></i>
+      <input type="search" name="term" placeholder="Enter an employee number">
+      <input type="submit" value="Search">
+    </form>
+</section>
+<section id="gigs" class="container">
+    <h1>Employees</h1>
+
+
+    <div>
+        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
+    </div>
+    <br><br>
+
+
+    
+  </section>
 </body>
 
 </html>

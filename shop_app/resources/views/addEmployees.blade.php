@@ -41,10 +41,9 @@
         </div>
         <div class="input-group">
           <label for="budget">Contact Email</label>
-          <input type="email" name="email" id="contactemail" class="input-box" placeholder="" 
-         >
+          <input type="email" name="email" id="contactemail" class="input-box" placeholder="" >
         </div>
-        <input type="submit" value="Add Employee" class="btn btn-reverse">
+        <input type="submit" value="+" class="btn btn-reverse">
       </form>
     </div>
   </section>

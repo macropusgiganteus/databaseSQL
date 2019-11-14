@@ -8,12 +8,13 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
     crossorigin="anonymous">
 
+
   <link rel="stylesheet" href="/css/style.css">
   <title>SHOP</title>
 </head>
 
 <body>
-  <header>
+  <header class="inner">
     <h2><a href="/"><i class="fas fa-code"></i>
         SHOP</a></h2>
     <nav>
@@ -34,13 +35,15 @@
         <li>
           <a href="/">Log out</a>
         </li>
+
       </ul>
     </nav>
   </header>
-    
- @yield('content')
 
-  
+  <div class="container">
+    
+
+  </div>
 </body>
 
 </html>
