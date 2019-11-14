@@ -22,9 +22,10 @@ Route::get('/', function () {
 Route::get('/products', 'ProductsController@index');
 // Route::get('/products/scale', 'ProductsController@scale');
 
-Route::get('/customers', function () {
-    return view('customers');
-});
+// Route::get('/customers', function () {
+//     return view('customers');
+// });
+Route::get('/customers', 'customerscontroller@index' );
 
 Route::get('/stock/index', 'StockInController@index');
 
