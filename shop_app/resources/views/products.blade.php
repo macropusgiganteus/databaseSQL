@@ -62,8 +62,8 @@
       <div class="tech">
           <small>MSRP:<span> {{$product['MSRP']}}</span></small>
       </div><br>
-     
-    
+      <a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a>
+      {{csrf_field()}}
     </div>
     @endforeach
   </section>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\StockIn;
-
+use App\Products;
 class StockInController extends Controller
 {
     /**
@@ -12,6 +12,7 @@ class StockInController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
         $stock = StockIn::all()->toArray();
@@ -24,9 +25,10 @@ class StockInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
         return view('stock.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -40,7 +42,8 @@ class StockInController extends Controller
         $stock = new StockIn([
             'productID' => $request->get('productID'),
             'amount' => $request->get('amount')] );
-       $stock->save();
+        
+        $stock->save();
         return redirect()->route('stock.index')->with('success','New products have been added.');
     }
 
