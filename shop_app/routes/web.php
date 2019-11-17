@@ -20,8 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/products', 'ProductsController@index');
-
-Route::get('/products/110', 'ProductsController@scale_110');
+// Route::get('/products/scale', 'ProductsController@scale');
 
 Route::get('/customers', function () {
     return view('customers');

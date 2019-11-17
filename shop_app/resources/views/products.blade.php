@@ -12,42 +12,28 @@
 
 
 <section id="gigs" class="container">
+  <form method="GET">
     <h1>Products</h1>
     <div>
-    <li class="dropdown"> 
-          <h4 class="dropbtn"><a class="btn btn-reverse">Product Scale</a></h4>
-          <div class="dropdown-content">
-            <a href="/products/110" class="btn btn-reverse">1:10</a>
-            <a class="btn btn-reverse">1:12</a>
-            <a class="btn btn-reverse">1:18</a>
-            <a class="btn btn-reverse">1:24</a>
-            <a class="btn btn-reverse">1:32</a>
-            <a class="btn btn-reverse">1:50</a>
-            <a class="btn btn-reverse">1:700</a>
-            <a class="btn btn-reverse">1:72</a>
-          </div>
-    </li> 
-    <li class="dropdown"> 
-          <h4 class="dropbtn"><a class="btn btn-reverse">Product Vendor</a></h4>
-          <div class="dropdown-content">
-            <a class="btn btn-reverse">Welly Diecast Productions</a>
-            <a class="btn btn-reverse">Unimax Art Galleries</a>
-            <a class="btn btn-reverse">Studio M Art Models</a>
-            <a class="btn btn-reverse">Second Gear Diecast</a>
-            <a class="btn btn-reverse">Red Start Diecast</a>
-            <a class="btn btn-reverse">Motor City Art Classics</a>
-            <a class="btn btn-reverse">Min Lin Diecast</a>
-            <a class="btn btn-reverse">Highway 66 Mini Classics</a>
-            <a class="btn btn-reverse">Gearbox Collectibles</a>
-            <a class="btn btn-reverse">Exoto Designs</a>
-            <a class="btn btn-reverse">Classic Metal Creations</a>
-            <a class="btn btn-reverse">Carousel DieCast Legends</a>
-            <a class="btn btn-reverse">Autoart Studio Design</a>
-          </div>
-    </li> 
+      <select name="scale" id="scale" class="form-control scale">
+        <option value="">Product Scale</option>
+        @foreach ($productScale as $productScale)
+          <option value="{{$productScale['productScale']}}">{{$productScale['productScale']}}</option>
+        @endforeach
+      </select>
+      <select name="vendor" id="vendor" class="form-control vendor">
+          <option value="">Product Vendor</option>
+          @foreach ($productVendor as $productVendor)
+            <option value="{{$productVendor['productVendor']}}">{{$productVendor['productVendor']}}</option>
+          @endforeach
+        </select>
+        <button onclick="filter(document.getElementById('scale').value)">Enter</button>
+    <a href="/products/add" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
     @foreach ($products as $product)
+        
+    
     <div class="gig" >
       <h1>{{$product['productName']}}   ({{$product['productCode']}})</h1>
       <p>{{$product['productDescription']}}</p>
@@ -65,6 +51,20 @@
       <a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a>
       {{csrf_field()}}
     </div>
+      {{-- @endforeach --}}
     @endforeach
+    
   </section>
+  <script>
+    function filter(value){
+      console.log(value);
+    }
+  </script>
+  {{-- <script type="text/javascript">
+      $('.scale').change(function(){
+        var select=$(this).val();
+        console.log(select);
+      });
+  </script> --}}
+
 @endsection
