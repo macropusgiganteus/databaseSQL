@@ -29,7 +29,7 @@
       <div class="tech">
           <small>SalesRepEmployeeNumber: {{$customer['salesRepEmployeeNumber']}}</span><br> 
            CreditLimit: <span>{{$customer['creditLimit']}}</span><br>
-           Memberpoint: <span>{{$customer['subpoint']}}</span></small>
+           Memberpoint: <span>{{$customer['sumpoint']}}</span></small>
       </div><br>
      
     </div>
