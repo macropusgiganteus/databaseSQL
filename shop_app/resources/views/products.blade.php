@@ -27,10 +27,11 @@
             <option value="{{$productVendor['productVendor']}}">{{$productVendor['productVendor']}}</option>
           @endforeach
         </select>
-        <button onclick="filter(document.getElementById('scale').value)">Enter</button>
+        <a onclick="filter(document.getElementById('scale').value)" class="btn btn-reverse" type="submit">Enter</a>
     <a href="/products/add" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
+    
     @foreach ($products as $product)
         
     
@@ -48,16 +49,31 @@
       <div class="tech">
           <small>MSRP:<span> {{$product['MSRP']}}</span></small>
       </div><br>
-     
+     {{ csrf_field() }}
     
     </div>
-      {{-- @endforeach --}}
     @endforeach
     
   </section>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script>
     function filter(value){
-      console.log(value);
+      if(value != ''){
+        console.log(value);
+        $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
+          }
+        });
+        $.ajax({
+          url:"/scale",
+          method:"POST",
+          data: {select:value},
+          success: function(data){
+            console.log(data);
+          }
+        });
+      }
     }
   </script>
   {{-- <script type="text/javascript">

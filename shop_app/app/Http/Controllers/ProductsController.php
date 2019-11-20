@@ -16,6 +16,10 @@ class ProductsController extends Controller
             ->with(compact('productScale'))
             ->with(compact('productVendor'));
     }
+    public function scale(Request $request){
+        $products = Products::all()->where('productScale' , $request)->toArray();
+        return view('products', compact('products'));
+    }
     }
 
  
