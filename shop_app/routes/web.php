@@ -30,20 +30,10 @@ Route::get('/customers', function () {
 Route::get('/stock/index', 'StockInController@index');
 
 
-
-Route::get('/products/add', function () {
-    return view('addproducts');
-});
-
-
 Route::get('/employees', 'EmployeesController@index' );
 
 Route::get('/employees/add', function () {
     return view('addEmployees');
-});
-
-Route::get('/show', function(){
-    return App\Employees::all();
 });
 
 Route::resource('stock','StockInController');
@@ -53,3 +43,5 @@ Route::get('/payments', function () {
     return view('payments');
 });
 
+Route::resource('product','ProductsController');
+Route::get('/product/index', 'ProductsController@index');

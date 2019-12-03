@@ -33,7 +33,7 @@
     <a href="/products/add" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
-    
+
     <table class="table table-bordered table-striped">
         <tr>
           <th>productName</th>
