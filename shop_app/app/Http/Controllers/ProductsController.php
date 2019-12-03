@@ -60,7 +60,7 @@ class ProductsController extends Controller
 
     public function destroy($productCode)
     {
-        $product = Products::where('productCode', $productCode);
+        $product = Products::where('productCode', $productCode)->first();
         $product->delete();
         return redirect()->route('product.index')->with('success', 'This products have been deleted!');
     }
@@ -77,7 +77,7 @@ class ProductsController extends Controller
             'buyPrice' => 'required',
             'MSRP' => 'required',
         ]);
-        $product = Products::where('productCode', $productCode);
+        $product = Products::where('productCode', $productCode)->first();
         $product->productName = $request->get('productName');
         $product->productLine = $request->get('productLine');
         $product->productScale = $request->get('productScale');
@@ -86,7 +86,7 @@ class ProductsController extends Controller
         $product->quantityInStock = $request->get('quantityInStock');
         $product->buyPrice = $request->get('buyPrice');
         $product->MSRP = $request->get('MSRP');
-        return $product;
+        $product->timestamps = false;
         $product->save();
         return redirect('/');
 
@@ -94,7 +94,7 @@ class ProductsController extends Controller
 
     public function edit($productCode)
     {
-        $product = Products::where('productCode', $productCode);
+        $product = Products::where('productCode', $productCode)->first();
 
         return view('product.edit', compact('product', 'productCode'));
     }
