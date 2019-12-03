@@ -15,7 +15,7 @@
         <a href="/customers/add" class="btn btn-reverse">Add a customer</a>
     </div>
     <br><br>
-    <div style="overflow-x:auto;">
+    <div style="overflow-x:auto; white-space: nowrap;">
     <table class="table table-bordered table-striped">
       <tr>
         <th>customerNumber</th>
