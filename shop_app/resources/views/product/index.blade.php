@@ -28,12 +28,12 @@
           @endforeach
         </select>
         <button onclick="filter(document.getElementById('scale').value)">Enter</button>
-    <a href="/products/add" class="btn btn-reverse">Add product</a>
+      <a href="/product/create" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
+
     @foreach ($products as $product)
-        
-    
+ 
     <div class="gig" >
       <h1>{{$product['productName']}}   ({{$product['productCode']}})</h1>
       <p>{{$product['productDescription']}}</p>
@@ -48,8 +48,14 @@
       <div class="tech">
           <small>MSRP:<span> {{$product['MSRP']}}</span></small>
       </div><br>
+
       <a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a>
-      {{csrf_field()}}
+
+      <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
+        {{csrf_field()}}
+        <input type="hidden" name="_method" value="DELETE" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
     </div>
       {{-- @endforeach --}}
     @endforeach
