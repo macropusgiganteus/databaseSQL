@@ -23,7 +23,7 @@
           <a href="/main">Home</a>
         </li>
         <li>
-          <a href="/products">All Product</a>
+          <a href="/">All Product</a>
         </li>
         <li class="dropdown"> 
           <p class="dropbtn">Manage</p>
