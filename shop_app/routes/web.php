@@ -15,7 +15,9 @@ Route::get('/login', function () {
 });
 
 Route::get('/customers', 'CustomersController@index');
-
+Route::get('/customers/add', function () {
+    return view('customers.addCustomers');
+});
 Route::get('/stock/index', 'StockInController@index');
 Route::resource('stock', 'StockInController');
 
