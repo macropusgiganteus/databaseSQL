@@ -23,9 +23,6 @@
     <nav>
       <ul>
         <li>
-          <a href="/main">Home</a>
-        </li>
-        <li>
           <a href="/">All Product</a>
         </li>
         <li class="dropdown"> 

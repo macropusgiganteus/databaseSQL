@@ -8,33 +8,47 @@
       <input type="submit" value="Search">
     </form>
 </section>
-<section id="gigs" class="container">
-    <h1>Employees</h1>
-    <div>
+<section id="gigs" >
+    <h1 class="container">Employees</h1>
+    <div class="container">
         <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
-    @foreach ($employees as $employee)
-    <div class="gig" >
-      <h3>Job title : {{$employee['jobTitle']}} </h3>
-      <h2>Name: {{$employee['firstName']}} {{$employee['lastName']}}</h2>
-     
-      <ul>
-          <li>E-mail: {{$employee['email']}}<br></li>
-          <li>Office:{{$employee['officeCode']}} <br></li>
-          <li>Reports to: {{$employee['reportsTo']}}<br></li>
-      </ul>
-      <div class="tech">
-          <small>Employee number:<span> {{$employee['employeeNumber']}}</span> Extension: <span>{{$employee['extension']}}</span></small>
-      </div><br>
-     
-    
-    </div>
-    @endforeach
-    
-    
 
- 
+    <table class="table table-bordered table-striped">
+      <tr>
+        <th>employeeNumber</th>
+        <th>firstName</th>
+        <th>lastName</th>
+        <th>email</th>
+        <th>officeCode</th>
+        <th>reportsTo</th>
+        <th>extension</th>
+        <th>jobTitle</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    @foreach ($employees as $employee)
+    <tr>
+      <td>{{$employee['employeeNumber']}}</td>
+      <td>{{$employee['firstName']}}</td>
+      <td>{{$employee['lastName']}}</td>
+      <td>{{$employee['email']}}</td>
+      <td>{{$employee['officeCode']}}</td>
+      <td>{{$employee['reportsTo']}}</td>
+      <td>{{$employee['extension']}}</td>
+      <td>{{$employee['jobTitle']}}</td>
+      <td><a href="{{action('StockInController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
+      <td>
+      <form method="post" class="delete_form" action="{{action('StockInController@destroy', $employee['employeeNumber'])}}">
+      {{csrf_field()}}
+      <input type="hidden" name="_method" value="DELETE" />
+      <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+      </td>
+  </tr>  
+  @endforeach
+</table>
   </section>
 
 @endsection
