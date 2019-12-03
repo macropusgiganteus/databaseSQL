@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Employees;
+use App\Customers;
 use Illuminate\Http\Request;
 
-class EmployeesController extends Controller
+class CustomersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = Employees::all()->toArray();
-        return view('employees.employees', compact('employees'));
+        $customers = Customers::all()->toArray();
+        return view('customers.customers', compact('customers'));
     }
 
     /**
@@ -56,7 +56,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($employeeNumber)
+    public function edit($id)
     {
         //
     }
@@ -68,7 +68,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $employeeNumber)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -79,7 +79,7 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($employeeNumber)
+    public function destroy($id)
     {
         //
     }

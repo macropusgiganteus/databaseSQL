@@ -30,7 +30,7 @@
         </select>
         <br>
         <a onclick="filter(document.getElementById('scale').value)" class="btn btn-reverse" type="submit">Enter</a>
-    <a href="/products/add" class="btn btn-reverse">Add product</a>
+    <a href="/products/create" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
 
@@ -59,9 +59,9 @@
           <td>{{$product['productScale']}}</td>
           <td>{{$product['productLine']}}</td>
           <td>{{$product['MSRP']}}</td>
-          <td><a href="{{action('StockInController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a></td>
+          <td><a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a></td>
           <td>
-          <form method="post" class="delete_form" action="{{action('StockInController@destroy', $product['productCode'])}}">
+          <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
           {{csrf_field()}}
           <input type="hidden" name="_method" value="DELETE" />
           <button type="submit" class="btn btn-danger">Delete</button>
