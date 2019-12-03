@@ -15,11 +15,11 @@ Route::get('/main', function () {
     return view('main');
 });
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/products', 'ProductsController@index');
+Route::get('/', 'ProductsController@index');
 Route::post('/scale', 'ProductsController@scale');
 
 

@@ -25,7 +25,7 @@
           <a href="/main">Home</a>
         </li>
         <li>
-          <a href="/products">All Product</a>
+          <a href="/">All Product</a>
         </li>
         <li class="dropdown"> 
           <h4 class="dropbtn">Manage</h4>
@@ -38,7 +38,7 @@
           <a href="/payments"><span class="fas fa-cart-plus"></span></a>
         </li> 
         <li>
-          <a href="/">Log out</a>
+          <a href="/login">Log in</a>
         </li>
 
       </ul>
