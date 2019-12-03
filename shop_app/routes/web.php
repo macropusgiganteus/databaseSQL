@@ -29,9 +29,6 @@ Route::get('/customers', function () {
 Route::get('/stock/index', 'StockInController@index');
 
 
-Route::get('/edit','ProductsController@edit');
-
-
 Route::get('/employees', 'EmployeesController@index' );
 
 Route::get('/employees/add', function () {

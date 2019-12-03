@@ -58,6 +58,40 @@ class ProductsController extends Controller
         $product->delete();
         return redirect()->route('product.index')->with('success','This products have been deleted!');
     }
+
+    public function update(Request $request, $productCode)
+    {
+        $this->validate($request, [ 'productCode' => 'required',
+            'productName' => 'required',
+            'productLine' => 'required',
+            'productScale' => 'required',
+            'productVendor' => 'required',
+            'productDescription' => 'required',
+            'quantityInStock' => 'required',
+            'buyPrice' => 'required',
+            'MSRP' => 'required'
+            ]);
+        $product = Products::where('productCode', $productCode);
+        $product->productName = $request->get('productName');
+        $product->productLine = $request->get('productLine');
+        $product->productScale = $request->get('productScale');
+        $product->productVendor = $request->get('productVendor');
+        $product->productDescription = $request->get('productDescription');
+        $product->quantityInStock = $request->get('quantityInStock');
+        $product->buyPrice = $request->get('buyPrice');
+        $product->MSRP = $request->get('MSRP'); 
+        return $product;
+        $product->save();
+        return redirect()->route('product.index')->with('success','New products have been updated.');
+
+    }
+
+    public function edit($productCode)
+    {
+        $product = Products::where('productCode', $productCode);
+        
+        return view('product.edit', compact('product', 'productCode'));
+    }
 }
 
 
