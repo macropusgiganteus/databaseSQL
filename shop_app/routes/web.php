@@ -14,17 +14,16 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::resource('customers', 'CustomersController');
 Route::get('/customers', 'CustomersController@index');
-Route::get('/customers/add', function () {
-    return view('customers.addCustomers');
-});
+Route::get('/customers/create', 'CustomersController@create');
+
 Route::get('/stock/index', 'StockInController@index');
 Route::resource('stock', 'StockInController');
 
+Route::resource('employees', 'EmployeesController');
 Route::get('/employees', 'EmployeesController@index');
-Route::get('/employees/add', function () {
-    return view('employees.addEmployees');
-});
+Route::get('/employees/create', 'EmployeesController@create');
 
 Route::get('/payments', function () {
     return view('payments');

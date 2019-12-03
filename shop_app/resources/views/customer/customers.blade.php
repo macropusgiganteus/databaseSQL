@@ -12,7 +12,7 @@
 <section id="gigs" >
     <h1 class="container">Customers</h1>
     <div class="container">
-        <a href="/customers/add" class="btn btn-reverse">Add a customer</a>
+        <a href="/customers/create" class="btn btn-reverse">Add a customer</a>
     </div>
     <br><br>
     <div style="overflow-x:auto; white-space: nowrap;">
@@ -49,10 +49,11 @@
       <td>{{$customer['country']}}</td>
       <td>{{$customer['salesRepEmployeeNumber']}}</td>
       <td>{{$customer['creditLimit']}}</td>
-      <td><a href="{{action('CustomersController@index', $customer['customerNumber'])}}" class="btn btn-primary">Edit</a></td>
+      <td><a href="{{action('CustomersController@edit', $customer['customerNumber'])}}" class="btn btn-primary">Edit</a></td>
       <td>
-      <form method="post" class="delete_form" action="{{action('CustomersController@index', $customer['customerNumber'])}}">
+      <form method="post" class="delete_form" action="{{action('CustomersController@destroy', $customer['customerNumber'])}}">
       {{csrf_field()}}
+      {{ method_field('DELETE') }} 
       <input type="hidden" name="_method" value="DELETE" />
       <button type="submit" class="btn btn-danger">Delete</button>
       </form>

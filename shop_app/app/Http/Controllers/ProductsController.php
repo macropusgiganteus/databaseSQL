@@ -88,7 +88,7 @@ class ProductsController extends Controller
         $product->MSRP = $request->get('MSRP');
         return $product;
         $product->save();
-        return redirect()->route('product.index')->with('success', 'New products have been updated.');
+        return redirect('/');
 
     }
 

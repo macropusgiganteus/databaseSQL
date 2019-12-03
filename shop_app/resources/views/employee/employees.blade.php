@@ -11,7 +11,7 @@
 <section id="gigs" >
     <h1 class="container">Employees</h1>
     <div class="container">
-        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
+        <a href="/employees/create" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
 
@@ -38,10 +38,11 @@
       <td>{{$employee['reportsTo']}}</td>
       <td>{{$employee['extension']}}</td>
       <td>{{$employee['jobTitle']}}</td>
-      <td><a href="{{action('EmployeesController@index', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
+      <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
       <td>
-      <form method="post" class="delete_form" action="{{action('EmployeesController@index', $employee['employeeNumber'])}}">
+      <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
       {{csrf_field()}}
+      {{ method_field('DELETE') }} 
       <input type="hidden" name="_method" value="DELETE" />
       <button type="submit" class="btn btn-danger">Delete</button>
       </form>

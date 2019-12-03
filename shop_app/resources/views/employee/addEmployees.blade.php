@@ -5,8 +5,6 @@
     <div class="form-wrap">
       <h1>Add An Employee</h1>
       
-
-
       <form action="/employees/add" method="POST">
         <div class="input-group">
           <label for="title">Job title</label>

@@ -63,6 +63,7 @@
           <td>
           <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
           {{csrf_field()}}
+          {{ method_field('DELETE') }} 
           <input type="hidden" name="_method" value="DELETE" />
           <button type="submit" class="btn btn-danger">Delete</button>
           </form>

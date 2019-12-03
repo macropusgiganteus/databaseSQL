@@ -15,7 +15,7 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = Employees::all()->toArray();
-        return view('employees.employees', compact('employees'));
+        return view('employee.employees', compact('employees'));
     }
 
     /**
@@ -25,7 +25,7 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        //
+        return view('employee.addEmployees');
     }
 
     /**
@@ -81,6 +81,8 @@ class EmployeesController extends Controller
      */
     public function destroy($employeeNumber)
     {
-        //
+        $employees = Employees::where('employeeNumber', $employeeNumber);
+        $employees->delete();
+        return redirect('/employees');
     }
 }

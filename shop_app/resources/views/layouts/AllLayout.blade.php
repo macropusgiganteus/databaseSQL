@@ -28,8 +28,8 @@
         <li class="dropdown"> 
           <p class="dropbtn">Manage</p>
           <div class="dropdown-content">
-            <a href="/employees">Employee</a>
-            <a href="/customers">Customer</a>
+            <a href="/employees" >Employee</a>
+            <a href="/customers" >Customer</a>
             <a href="/stock/index">Stock In</a>
           </div>
         </li> 

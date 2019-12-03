@@ -15,7 +15,7 @@ class CustomersController extends Controller
     public function index()
     {
         $customers = Customers::all()->toArray();
-        return view('customers.customers', compact('customers'));
+        return view('customer.customers', compact('customers'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.addCustomers');
     }
 
     /**
@@ -45,7 +45,7 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($customerNumber)
     {
         //
     }
@@ -56,7 +56,7 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($customerNumber)
     {
         //
     }
@@ -68,7 +68,7 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $customerNumber)
     {
         //
     }
@@ -79,8 +79,10 @@ class CustomersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($customerNumber)
     {
-        //
+        $customers = Customers::where('customerNumber', $customerNumber);
+        $customers->delete();
+        return redirect('/customers');
     }
 }
