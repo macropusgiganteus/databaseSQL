@@ -1,11 +1,13 @@
 @extends('layouts.AllLayout')
 @section('title','SHOP')
 @section('content')
-<section id="add" class="container">
+<section class="container">
     <div class="form-wrap">
       <h1>Edit Employee informations</h1>
       
       <form action="{{action('EmployeesController@update', $employeeNumber)}} method="POST">
+          @csrf
+          @method('PUT')
         {{csrf_field()}}
         <div class="input-group">
           <label for="title">Job title</label>
@@ -49,17 +51,5 @@
     </div>
   </section>
 
-  <section class="container">
-    @if(count($errors)>0)
-    <div class="w3-panel w3-red"align="center">
-      <ul>
-        @foreach ($errors->all() as $error)
-      <li>{{$error}}</li>   
-        @endforeach
-      </ul>
-    </div>
-    @endif
-
-</section>
 
 @endsection
