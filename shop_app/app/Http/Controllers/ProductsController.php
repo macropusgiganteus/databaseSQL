@@ -7,21 +7,31 @@ use Illuminate\Http\Request;
 
 class ProductsController extends Controller
 {
-    public function index()
-    {
-        $products = Products::all()->toArray();
+    public function index(Request $request){
+        if (empty($request->input('scale')) && empty($request->input('vendor'))) {
+            $products = Products::all()->toArray();
+        }
+        elseif(!empty($request->input('scale')) && empty($request->input('vendor'))){
+            $products = Products::all()
+                ->where('productScale', $request->input('scale'))->toArray();
+        }
+        elseif(empty($request->input('scale')) && !empty($request->input('vendor'))){
+            $products = Products::all()
+                ->where('productVendor', $request->input('vendor'))->toArray();
+        }
+        else{
+            $products = Products::all()
+                ->where('productScale', $request->input('scale'))
+                ->where('productVendor', $request->input('vendor'))->toArray();
+        }
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
-        return view('product.index')
+        
+        return 
+        view('products')
             ->with(compact('products'))
             ->with(compact('productScale'))
             ->with(compact('productVendor'));
-    }
-
-    public function scale(Request $request)
-    {
-        $products = Products::all()->where('productScale', $request)->toArray();
-        return view('products', compact('products'));
     }
 
     public function create()
