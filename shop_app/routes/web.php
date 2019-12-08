@@ -34,10 +34,10 @@ Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
 Route::post('/scale', 'ProductsController@scale');
 
-
-Route::post('/checklist','ChecklistCustomerController@checklist');
-Route::get('/checklist', function(){
+Route::post('/checklist', 'ChecklistCustomerController@checklist');
+Route::get('/checklist', function () {
     return view('checklist');
 });
 
-Route::resource('cart','CartController');
+Route::get('/cart/index', 'CartController@index');
+Route::resource('cart', 'CartController');

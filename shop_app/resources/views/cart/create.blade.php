@@ -21,7 +21,6 @@
       <table class="table table-bordered table-striped">
         <tr>
             <th>productCode</th>
-            {{-- <th>Name</th> --}}
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
@@ -34,13 +33,7 @@
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
             {{-- <td><a href="{{action('CartController@edit', $item['id'])}}" class="btn btn-primary">Edit</a></td> --}}
-            <td>
-            {{-- <form method="post" class="delete_form" action="{{action('CartController@destroy', $item['id'])}}">
-            {{csrf_field()}}
-            <input type="hidden" name="_method" value="DELETE" />
-            <button type="submit" class="btn btn-danger">Delete</button>
-            </form> --}}
-            </td>
+            <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
         </tr>  
         @endforeach
        
@@ -49,27 +42,28 @@
   
 
   <section id="gigs" >
-  <form method="GET">
-    <h3 class="container">Products</h3>
-    <div class="container">
-      <select name="scale" id="scale" class="form-control scale">
-        <option value="">Product Scale</option>
-        @foreach ($productScale as $productScale)
+    <form method="GET" action="{{action('CartController@index')}}">
+      <h1 class="container">Products</h1>
+      <div class="container">
+        <select name="scale" id="scale" class="form-control scale">
+          <option value="">Product Scale</option>
+          @foreach ($productScale as $productScale)
           <option value="{{$productScale['productScale']}}">{{$productScale['productScale']}}</option>
-        @endforeach
-      </select>
-      <br>
-      <select name="vendor" id="vendor" class="form-control vendor">
-          <option value="">Product Vendor</option>
-          @foreach ($productVendor as $productVendor)
-            <option value="{{$productVendor['productVendor']}}">{{$productVendor['productVendor']}}</option>
           @endforeach
         </select>
         <br>
-        <a action="{{action('ProductsController@scale')}}" class="btn btn-reverse" type="submit">Enter</a>  
-        <a onclick="filter(document.getElementById('scale').value)" class="btn btn-reverse" type="submit">Enter</a>
-    </div>
-    <br><br>
+        <select name="vendor" id="vendor" class="form-control vendor">
+            <option value="">Product Vendor</option>
+            @foreach ($productVendor as $productVendor)
+              <option value="{{$productVendor['productVendor']}}">{{$productVendor['productVendor']}}</option>
+            @endforeach
+          </select>
+          <br>
+          <input type="submit" value="Enter" class="btn btn-reverse">
+          
+      <a href="/products/create" class="btn btn-reverse">Add product</a>
+      </div>
+      <br><br>
     </form>
     <table class="table table-bordered table-striped">
         <tr>
@@ -98,11 +92,11 @@
           <td>{{$product['productScale']}}</td>
           <td>{{$product['productLine']}}</td>
           <td>{{$product['MSRP']}}</td>
-          {{-- <form action="{{action('CartController@edit', $product['productCode']))}}" method="POST"> --}}
-            {{-- {{csrf_field()}}    --}}
+          <form action="{{action('CartController@create')}}" method="get">
+            <input type="hidden" value="{{$product['productCode']}}" name="productCode">
             <td><input type="number" name="qty" id="qty" class="input-box" maxlength="5" value="1"></td>
-          <td><a href="{{action('CartController@edit', $product['productCode'])}}" class="btn btn-success btn-block">add</a></td>
-      {{-- </form> --}}
+            <td><button type="submit" class="btn btn-primary">Add</button></td>
+      </form>
       </tr>  
         @endforeach
       

@@ -34,7 +34,7 @@
           </div>
         </li> 
         <li>
-          <a href="/cart/create"><span class="fas fa-cart-plus"></span></a>
+          <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
         </li> 
         <li>
           <a href="/login">Log in</a>
