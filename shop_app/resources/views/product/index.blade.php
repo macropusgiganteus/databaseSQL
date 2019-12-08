@@ -18,7 +18,7 @@
       <select name="scale" id="scale" class="form-control scale">
         <option value="">Product Scale</option>
         @foreach ($productScale as $productScale)
-          <input type="submit" value="Enter">
+        <option value="{{$productScale['productScale']}}">{{$productScale['productScale']}}</option>
         @endforeach
       </select>
       <br>
@@ -29,7 +29,8 @@
           @endforeach
         </select>
         <br>
-        <a onclick="filter(document.getElementById('scale').value)" class="btn btn-reverse" type="submit">Enter</a>
+        <input type="submit" value="Enter" class="btn btn-reverse">
+        
     <a href="/products/create" class="btn btn-reverse">Add product</a>
     </div>
     <br><br>
