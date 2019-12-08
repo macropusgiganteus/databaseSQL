@@ -33,3 +33,11 @@ Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
 Route::post('/scale', 'ProductsController@scale');
+
+
+Route::post('/checklist','ChecklistCustomerController@checklist');
+Route::get('/checklist', function(){
+    return view('checklist');
+});
+
+Route::resource('cart','CartController');
