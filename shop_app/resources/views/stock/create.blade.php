@@ -5,8 +5,7 @@
 <section id="add" class="container">
         <div class="form-wrap">
           <h1>Product Stock In</h1>
-  
-              
+          
           
           {{-- form --}}
           <form action="{{url('stock')}}" method="POST">

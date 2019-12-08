@@ -15,7 +15,7 @@ class CustomersController extends Controller
     public function index()
     {
         $customers = Customers::all()->toArray();
-        return view('customer.customers', compact('customers'));
+        return view('customer.index', compact('customers'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
-        return view('customer.addCustomers');
+        return view('customer.create');
     }
 
     /**
@@ -36,7 +36,38 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'customerNumber' => 'required',
+            'contactFirstName' => 'required',
+            'contactLastName' => 'required',
+            'customerName' => 'required',
+            'addressLine1' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'postalCode' => 'required',
+            'phone' => 'required',
+            'salesRepEmployeeNumber' => 'required'
+            //state not required
+        ]);
+
+        $member = new Customers([
+            'customerNumber' => $request->get('customerNumber'),
+            'contactFirstName' => $request->get('contactFirstName'),
+            'contactLastName' => $request->get('contactLastName'),
+            'customerName' => $request->get('customerName'),
+            'addressLine1' => $request->get('addressLine1'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'postalCode' => $request->get('postalCode'),
+            'phone' => $request->get('phone'),
+            'salesRepEmployeeNumber' => $request->get('salesRepEmployeeNumber'),
+            'state' => $request->get('state'),
+            'creditLimit'=> $request->get('creditLimit')
+        ]);
+        $member->timestamps = false;
+        $member->save();
+
+        return redirect()->route('customer.create')->with('success','Create customer Successful!');
     }
 
     /**
