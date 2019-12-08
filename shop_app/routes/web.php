@@ -15,10 +15,8 @@ Route::get('/login', function () {
 });
 
 Route::resource('customers', 'CustomersController');
-Route::post('/checklist','ChecklistCustomerController@checklist');
-Route::get('/checklist', function(){
-    return view('checklist');
-});
+Route::get('/customers', 'CustomersController@index');
+Route::get('/customers/create', 'CustomersController@create');
 
 Route::get('/stock/index', 'StockInController@index');
 Route::resource('stock', 'StockInController');
@@ -35,6 +33,3 @@ Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
 Route::post('/scale', 'ProductsController@scale');
-
-Route::resource('cart','CartController');
-
