@@ -12,13 +12,13 @@
 
 
 <section id="gigs" >
-  <form method="GET">
+  <form method="GET" action="{{action('ProductsController@index')}}">
     <h1 class="container">Products</h1>
     <div class="container">
       <select name="scale" id="scale" class="form-control scale">
         <option value="">Product Scale</option>
         @foreach ($productScale as $productScale)
-          <option value="{{$productScale['productScale']}}">{{$productScale['productScale']}}</option>
+          <input type="submit" value="Enter">
         @endforeach
       </select>
       <br>
@@ -73,32 +73,6 @@
         @endforeach
   </table>
   </section>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script>
-    function filter(value){
-      if(value != ''){
-        console.log(value);
-        $.ajaxSetup({
-          headers: {
-            'X-CSRF-TOKEN' : $('meta[name="csrf-token"]').attr('content')
-          }
-        });
-        $.ajax({
-          url:"/scale",
-          method:"POST",
-          data: {select:value},
-          success: function(data){
-            console.log(data);
-          }
-        });
-      }
-    }
-  </script>
-  {{-- <script type="text/javascript">
-      $('.scale').change(function(){
-        var select=$(this).val();
-        console.log(select);
-      });
-  </script> --}}
+  
 
 @endsection
