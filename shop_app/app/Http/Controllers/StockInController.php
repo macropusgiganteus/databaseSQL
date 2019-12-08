@@ -26,6 +26,7 @@ class StockInController extends Controller
      */
     public function create()
     {   
+
         return view('stock.create');
     }
 
@@ -37,14 +38,28 @@ class StockInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
         $this->validate($request, [ 'productID' => 'required', 'amount' => 'required' ]);
-        $stock = new StockIn([
+        if(Products::where('productCode',$request->get('productID'))->exists()){
+            $stock = new StockIn([
             'productID' => $request->get('productID'),
             'amount' => $request->get('amount')] );
-        
-        $stock->save();
+            $stock->save();
+           // $qualityProduct = Products::where('productCode',$request->get('productID'));
+        //    $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->get('quantityInStock');
+        $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->first()->quantityInStock; 
+        $qualityProduct = $qualityProduct+$request->get('amount');
+
+        $products = Products::where('productCode',$request->get('productID'))->first();
+        $products->timestamps = false;
+        $products-> update(['quantityInStock' => $qualityProduct]);
         return redirect()->route('stock.index')->with('success','New products have been added.');
+        }
+        else{
+            return redirect()->route('stock.index')->with('error','Do not have this ProductID');
+        }
+
+        
     }
 
     /**
@@ -66,8 +81,8 @@ class StockInController extends Controller
      */
     public function edit($id)
     {
-        $stock = StockIn::find($id);
-        return view('stock.edit', compact('stock','id'));
+        // $stock = StockIn::find($id);
+        // return view('stock.edit', compact('stock','id'));
     }
 
     /**
@@ -79,12 +94,11 @@ class StockInController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,['productID' => 'required','amount' => 'required']);
-        $stock = StockIn::find($id);
-        $stock->productID = $request->get('productID');
-        $stock->amount = $request->get('amount');
-        $stock->save();
-        return redirect()->route('stock.index')->with('success','data has been updated.');
+        // $this->validate($request,['amount' => 'required']);
+        // $stock = StockIn::find($id);
+        // $stock->amount = $request->get('amount');
+        // $stock->save();
+        // return redirect()->route('stock.index')->with('success','data has been updated.');
     }
 
     /**
@@ -96,7 +110,14 @@ class StockInController extends Controller
     public function destroy($id)
     {
         $stock = StockIn::find($id);
+        $qualityProduct = Products::select('quantityInStock')->where('productCode',$stock['productID'])->first()->quantityInStock;
+        $qualityProduct = $qualityProduct-$stock['amount'];
+        $products = Products::where('productCode',$stock['productID'])->first();
+        $products->timestamps = false;
+        $products-> update(['quantityInStock' => $qualityProduct]);
         $stock->delete();
         return redirect()->route('stock.index')->with('success','This products have been deleted!');
     }
+
+   
 }
