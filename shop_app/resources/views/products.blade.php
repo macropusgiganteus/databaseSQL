@@ -52,7 +52,7 @@
       <div class="tech">
           <small>MSRP:<span> {{$product['MSRP']}}</span></small>
       </div><br>
-      <a href="#" class="btn btn-reverse">Add to cart</a>
+      <a href="#" class="btn btn-reverse" option value="" >Add to cart</a>
      
     
     </div>
