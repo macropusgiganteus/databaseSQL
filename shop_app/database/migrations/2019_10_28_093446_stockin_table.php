@@ -15,7 +15,7 @@ class StockinTable extends Migration
     {
         Schema::create('instock', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('productID');
+            $table->string('productID');
             $table->integer('amount');
             $table->timestamps();
         });
