@@ -34,11 +34,6 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function store(Request $request)
-    {
-        //
-    }
-
     public function login(Request $request)
     {
         if (User::where('employeeNumber', $request->input('employeenumber'))->exists()) {
@@ -52,18 +47,4 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
-    public function edit($id)
-    {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    public function destroy($id)
-    {
-        //
-    }
 }
