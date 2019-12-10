@@ -32,6 +32,8 @@ Route::get('/payments', function () {
 Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
+Route::get('products/search', 'ProductsController@search');
+
 Route::post('/scale', 'ProductsController@scale');
 
 Route::post('/checklist', 'ChecklistCustomerController@checklist');

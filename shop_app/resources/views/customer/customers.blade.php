@@ -1,13 +1,6 @@
 @extends('layouts.AllLayout')
 @section ('title','SHOP')
 @section('content')
-<section id="gigs" class="container">
-    <form action="/customers/search" class="search-form">
-      <i class="fas fa-search"></i>
-      <input type="search" name="term" placeholder="Enter a customer number">
-      <input type="submit" value="Search">
-    </form>
-</section>
 
 <section id="gigs" >
     <h1 class="container">Customers</h1>
