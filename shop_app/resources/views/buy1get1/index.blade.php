@@ -16,9 +16,9 @@
         </tr>
         @foreach($products as $row)
         <tr>
-            <td>{{$row['productID']}}</td>
+            <td>{{$row['ProductCode']}}</td>
             <td>{{$row['created_at']}}</td>
-            <td>{{$row['EXP_Date']}}</td>
+            <td>{{$row['EXP_date']}}</td>
             {{-- <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td> --}}
             {{-- <td>
             <form method="post" class="delete_form" action="{{action('StockInController@destroy', $row['id'])}}">

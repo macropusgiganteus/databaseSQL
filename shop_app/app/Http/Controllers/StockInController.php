@@ -54,7 +54,7 @@ class StockInController extends Controller
         return redirect()->route('stock.index')->with('success','New products have been added.');
         }
         else{
-            return redirect()->route('stock.index')->with('error','Do not have this ProductID');
+            return redirect()->route('stock.index')->with('errors','Do not have this ProductID');
         }
 
         
