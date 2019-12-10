@@ -4,7 +4,7 @@
 
 <div class="container">
     <h1>Promotion : 50%discount </h1>
-    <button class="btn btn-reverse"><a href="/discount/create">Add Promotion</a></button>
+    <button class="btn btn-reverse"><a href="/discount/create">Add Discount Code</a></button>
 </div>
 <section id="gigs" class="container">
         <table class="table table-bordered table-striped">
