@@ -40,14 +40,13 @@ class Buy1get1controller extends Controller
         $this->validate($request, [ 'productCode' => 'required', 'exp' => 'required' ]);
         if(Products::where('productCode',$request->get('productCode'))->exists()){
             $product = new Buy1Get1([
-                'productCode' => $request->get('productCode'),
+                'ProductCode' => $request->get('productCode'),
                 'EXP_Date' => $request->get('exp')
             ]);
-            $product->timestamps = false;
             $product->save();
-            return redirect()->route('buy1get1.index')->with('success','New products have been added on this promotion.');
+            return redirect()->route('buy1get1.create')->with('success','New products have been added on this promotion.');
         }else{
-            return redirect()->route('buy1get1.create')->with('error','Do not have this ProductID');
+            return redirect()->route('buy1get1.create')->with('error','Do not have this product code.');
         }
     }
 
@@ -93,6 +92,8 @@ class Buy1get1controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Buy1Get1::find($id);
+        $product->delete();
+        return redirect()->route('buy1get1.index')->with('success', 'This products have been deleted from this promotion.');
     }
 }

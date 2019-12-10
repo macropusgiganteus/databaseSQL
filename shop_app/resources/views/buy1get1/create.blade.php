@@ -46,6 +46,11 @@
     <p>{{\Session::get('success')}}</p>
     </div>
     @endif
+    @if(\Session::has('error'))
+    <div class="w3-panel w3-red" align="center">
+    <p>{{\Session::get('error')}}</p>
+    </div>
+    @endif
 
 </section>
 

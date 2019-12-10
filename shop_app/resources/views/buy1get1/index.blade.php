@@ -16,17 +16,17 @@
         </tr>
         @foreach($products as $row)
         <tr>
-            <td>{{$row['productID']}}</td>
+            <td>{{$row['ProductCode']}}</td>
             <td>{{$row['created_at']}}</td>
-            <td>{{$row['EXP_Date']}}</td>
+            <td>{{$row['EXP_date']}}</td>
             {{-- <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td> --}}
-            {{-- <td>
-            <form method="post" class="delete_form" action="{{action('StockInController@destroy', $row['id'])}}">
+            <td>
+            <form method="post" class="delete_form" action="{{action('Buy1get1controller@destroy', $row['id'])}}">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="DELETE" />
             <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            </td> --}}
+            </td> 
         </tr>  
         @endforeach
     </table>

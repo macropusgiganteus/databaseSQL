@@ -49,3 +49,4 @@ Route::resource('discount','DiscountController');
 Route::get('/discount', function () {
     return view('discount.index');
 });
+
