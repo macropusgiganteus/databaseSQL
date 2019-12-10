@@ -41,14 +41,14 @@
           <p class="dropbtn">Promotions</p>
           <div class="dropdown-content">
             <a href="/buy1get1">Buy1Get1</a>
-            <a href="#">50%</a>
+            <a href="/discount">50%</a>
           </div>
         </li>
         <li>
           <a href="/login">Log in</a>
         </li>
       </ul>
-    </nav>
+    </nav> 
   </header>
 
 @yield('content')
