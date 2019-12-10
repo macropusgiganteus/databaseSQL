@@ -32,4 +32,5 @@ Route::get('/payments', function () {
 Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
-Route::post('/scale', 'ProductsController@scale');
+Route::get('products/search', 'ProductsController@search');
+
