@@ -41,3 +41,7 @@ Route::get('/checklist', function () {
 
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
+
+Route::get('/order/addorders', function () {
+    return view('order.addorders');
+});
