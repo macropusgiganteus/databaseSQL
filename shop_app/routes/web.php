@@ -31,9 +31,9 @@ Route::resource('employees', 'EmployeesController');
 Route::get('/employees', 'EmployeesController@index');
 Route::get('/employees/create', 'EmployeesController@create');
 
-Route::get('/payments', function () {
-    return view('payments');
-});
+Route::get('/payments/index', 'PaymentsController@index');
+
+Route::resource('payments', 'PaymentsController');
 
 Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
