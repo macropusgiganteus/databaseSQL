@@ -2,52 +2,47 @@
 
 namespace App\Http\Controllers;
 
-use App\Employees;
+use App\Http\Controllers\Controller;
+use App\Payments;
 use Illuminate\Http\Request;
 
-class EmployeesController extends Controller
+class PaymentsController extends Controller
 {
-
     public function index()
     {
-        $employees = Employees::all()->toArray();
+        $payments = Payments::all()->toArray();
 
-        return view('employee.employees')
-            ->with(compact('employees'));
+        return view('payments.index')
+            ->with(compact('payments'));
     }
 
     public function create()
     {
-        return view('employee.addEmployees');
+
+        return view('payments.create');
+        //
     }
 
     public function store(Request $request)
     {
-        $this->validate($request, ['employeeNumber' => 'required',
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required',
-            'officeCode' => 'required',
-            'reportsTo' => 'required',
-            'jobTitle' => 'required',
-            'extension' => 'nullable']);
+        $this->validate($request, [
+            'customerNumber' => 'required',
+            'checkNumber' => 'required',
+            'paymentDate' => 'required',
+            'amount' => 'required']);
         $employee = new Employees([
-            'employeeNumber' => $request->get('employeeNumber'),
-            'firstName' => $request->get('firstName'),
-            'lastName' => $request->get('lastName'),
-            'email' => $request->get('email'),
-            'officeCode' => $request->get('officeCode'),
-            'reportsTo' => $request->get('reportsTo'),
-            'jobTitle' => $request->get('jobTitle'),
-            'extension' => $request->get('extension'),
+            'customerNumber' => $request->get('customerNumber'),
+            'checkNumber' => $request->get('checkNumber'),
+            'paymentDate' => $request->get('paymentDate'),
+            'amount' => $request->get('amount'),
         ]);
-        $employee->timestamps = false;
+        $employee->timestamps('paymentDate');
         $employee->save();
 
-        return redirect('/employees');
+        return redirect('/payments');
     }
 
-    public function edit($employeeNumber)
+    public function edit($customerNumber)
     {
 
         $employees = Employees::where('employeeNumber', $employeeNumber)->first();
@@ -77,13 +72,11 @@ class EmployeesController extends Controller
         $employees->extension = $request->input('extension');
         $employees->timestamps = false;
         $employees->save();
-        return redirect('/employees');
+        return redirect('/payments');
     }
 
-    public function destroy($employeeNumber)
+    public function destroy()
     {
-        $employees = Employees::where('employeeNumber', $employeeNumber);
-        $employees->delete();
-        return redirect('/employees');
+
     }
 }

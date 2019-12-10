@@ -10,9 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
  */
-Route::get('/login', function () {
-    return view('login');
+Route::get('/logout', 'UsersController@logout');
+Route::get('/users/register', function () {
+    return view('login.register');
 });
+Route::post('/users/create', 'UsersController@create');
+Route::post('/users/login', 'UsersController@login');
+Route::resource('users', 'UsersController');
+Route::get('/login', 'UsersController@index');
 
 Route::resource('customers', 'CustomersController');
 Route::get('/customers', 'CustomersController@index');
@@ -25,9 +30,9 @@ Route::resource('employees', 'EmployeesController');
 Route::get('/employees', 'EmployeesController@index');
 Route::get('/employees/create', 'EmployeesController@create');
 
-Route::get('/payments', function () {
-    return view('payments');
-});
+Route::get('/payments/index', 'PaymentsController@index');
+
+Route::resource('payments', 'PaymentsController');
 
 Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');

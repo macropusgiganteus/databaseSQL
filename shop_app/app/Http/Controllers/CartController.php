@@ -27,6 +27,7 @@ class CartController extends Controller
         }
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
+
         return view('cart.create')
             ->with(compact('products'))
             ->with(compact('productScale'))

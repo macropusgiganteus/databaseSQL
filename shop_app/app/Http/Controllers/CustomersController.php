@@ -15,7 +15,9 @@ class CustomersController extends Controller
     public function index()
     {
         $customers = Customers::all()->toArray();
-        return view('customer.customers', compact('customers'));
+
+        return view('customer.customers')
+            ->with(compact('customers'));
     }
 
     /**
@@ -25,6 +27,7 @@ class CustomersController extends Controller
      */
     public function create()
     {
+
         return view('customer.addCustomers');
     }
 
