@@ -45,8 +45,6 @@ class StockInController extends Controller
             'productID' => $request->get('productID'),
             'amount' => $request->get('amount')] );
             $stock->save();
-           // $qualityProduct = Products::where('productCode',$request->get('productID'));
-        //    $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->get('quantityInStock');
         $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->first()->quantityInStock; 
         $qualityProduct = $qualityProduct+$request->get('amount');
 
