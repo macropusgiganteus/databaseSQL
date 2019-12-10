@@ -14,10 +14,10 @@ class CreateCartTable extends Migration
     public function up()
     {
         Schema::create('carts', function (Blueprint $table) {
-            $table->bigIncrements('customerNumber');
+            $table->integer('customerNumber');
             $table->string('productCode');
-            $table->increments('quantityOrdered');
-            $table->increments('priceEach');
+            $table->integer('quantityOrdered');
+            $table->integer('priceEach');
             $table->timestamps();
         });
     }
