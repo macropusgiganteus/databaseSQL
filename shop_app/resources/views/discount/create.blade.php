@@ -12,8 +12,8 @@
           <form action="{{url('discount')}}" method="POST">
             {{csrf_field()}}
             <div class="input-group">
-              <label>Promotion Id</label>
-              <input type="text" name="promotion" id="promotion" class="input-box" placeholder="Add Promotion Id."
+              <label>Promotion Code</label>
+              <input type="text" name="promotionId" id="promotion" class="input-box" placeholder="Add Promotion Id."
                 maxlength="50" >
             </div>
             <div class="input-group">
@@ -43,7 +43,6 @@
           </ul>
         </div>
         @endif
-    
     
         @if(\Session::has('success'))
         <div class="w3-panel w3-green " align="center">

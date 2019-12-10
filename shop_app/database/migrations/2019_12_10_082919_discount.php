@@ -14,6 +14,7 @@ class Discount extends Migration
     public function up()
     {
         Schema::create('discount', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('PromotionCode');
             $table->integer('Count');
             $table->timestamps();
