@@ -43,11 +43,10 @@ class Buy1get1controller extends Controller
                 'ProductCode' => $request->get('productCode'),
                 'EXP_Date' => $request->get('exp')
             ]);
-            $product->timestamps = false;
-            // $product->save();
+            $product->save();
             return redirect()->route('buy1get1.create')->with('success','New products have been added on this promotion.');
         }else{
-            return redirect()->route('buy1get1.create')->with('errors');
+            return redirect()->route('buy1get1.create')->with('error','Do not have this product code.');
         }
     }
 
@@ -93,6 +92,8 @@ class Buy1get1controller extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Buy1Get1::find($id);
+        $product->delete();
+        return redirect()->route('buy1get1.index')->with('success', 'This products have been deleted from this promotion.');
     }
 }

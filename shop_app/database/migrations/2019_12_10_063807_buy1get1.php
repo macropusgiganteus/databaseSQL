@@ -14,6 +14,7 @@ class Buy1get1 extends Migration
     public function up()
     {
         Schema::create('buy1get1', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->string('ProductCode');
             $table->timestamps();
             $table->date('EXP_date');
