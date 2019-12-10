@@ -37,6 +37,8 @@ Route::resource('payments', 'PaymentsController');
 Route::resource('product', 'ProductsController');
 Route::get('/products/create', 'ProductsController@create');
 Route::get('/', 'ProductsController@index');
+Route::get('products/search', 'ProductsController@search');
+
 Route::post('/scale', 'ProductsController@scale');
 
 Route::post('/checklist', 'ChecklistCustomerController@checklist');
@@ -46,3 +48,15 @@ Route::get('/checklist', function () {
 
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
+
+
+Route::resource('buy1get1', 'Buy1get1controller');
+Route::get('/buy1get1','Buy1get1controller@index');
+Route::resource('discount','DiscountController');
+
+
+
+Route::get('/order/addorders', function () {
+    return view('order.addorders');
+});
+

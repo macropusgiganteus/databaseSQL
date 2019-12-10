@@ -1,18 +1,37 @@
 @extends('layouts.AllLayout')
-@section ('title','SHOP')
+@section('title','SHOP')
 @section('content')
+<section id="add" class="container">
+    <div class="form-wrap">
+      <h1>NewOrder</h1>
 
-<section id="gigs" >
-    <h1 class="container">Customers</h1>
-    <div class="container">
-        <a href="/customers/create" class="btn btn-reverse">Add a customer</a>
-    </div>
-    <br><br>
-    <div style="overflow-x:auto; white-space: nowrap;">
+      <form action="{{url('addorders')}}" method="POST">
+        {{csrf_field()}}
+        <div class="input-group">
+          <label for="title">orderNumber</label>
+          <input type="number" name="orderNumber" id="title" class="input-box" placeholder=""
+            maxlength="5" >
+        </div>
+        <div class="input-group">
+          <label for="technologies">requiredDate</label>
+          <input type="Date" name="requiredDate" id="technologies" class="input-box" placeholder=""
+          maxlength="50" >
+        </div>
+        <br>
+        <div class="input-group">
+          <label for="technologies"> orderDate  : <?php echo Date("m-d-Y"); ?> </label>
+        </div>
+        <br>
+        <div class="input-group">
+            <label for="technologies"> orderDate  : <?php echo Date("m-d-Y"); ?> </label>
+        </div>
+       
+        
+        {{-- <div style="overflow-x:auto; white-space: nowrap;">
     <table class="table table-bordered table-striped">
       <tr>
-        <th>customerNumber</th>
-        <th>customerName</th>
+        <th>orderNumber</th>
+        <th>orderDate</th>
         <th>contactLastName</th>
         <th>contactFirstName</th>
         <th>phone</th>
@@ -54,9 +73,9 @@
   </tr>  
   @endforeach
 </table>
-  </div>
+  </div> --}}
+      </form>
+    </div>
   </section>
 
 @endsection
-
-  

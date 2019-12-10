@@ -2,11 +2,13 @@
 @section ('title','SHOP')
 @section('content')
 
-  <section id="gigs" class="container">
-    <form action="/products/search" class="search-form">
+<section id="gigs" class="container">
+    <form method="GET" action="products/search" class="search-form">
       <i class="fas fa-search"></i>
-      <input type="search" name="term" placeholder="Enter a product name">
-      <input type="submit" value="Search">
+      <input type="search" name="search" placeholder="Enter A Product Name">
+      <span>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </span>
     </form>
 </section>
 @if(Cookie::get('jobtitle'))
