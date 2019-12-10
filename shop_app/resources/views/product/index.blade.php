@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','SHOP')
 @section('content')
 
@@ -9,8 +9,9 @@
       <input type="submit" value="Search">
     </form>
 </section>
-
-
+@if(Cookie::get('jobtitle'))
+<section id="gigs" class="container"><h3>{{ Cookie::get('employeeNumber') }} : {{ Cookie::get('jobtitle') }}</h3></section>
+@endif
 <section id="gigs" >
   <form method="GET" action="{{action('ProductsController@index')}}">
     <h1 class="container">Products</h1>

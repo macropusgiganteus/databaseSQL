@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section('title','SHOP')
 @section('content')
 <section class="container">

@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends('layouts.Layout')
 @section ('title','SHOP')
 @section('content')
 

@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\StockIn;
 use App\Products;
+use App\StockIn;
+use Illuminate\Http\Request;
+
 class StockInController extends Controller
 {
     /**
@@ -16,7 +17,8 @@ class StockInController extends Controller
     public function index()
     {
         $stock = StockIn::all()->toArray();
-        return view('stock.index', compact('stock'));
+        return view('stock.index')
+            ->with(compact('stock'));
     }
 
     /**
@@ -25,11 +27,10 @@ class StockInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
 
         return view('stock.create');
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -38,28 +39,26 @@ class StockInController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
-        $this->validate($request, [ 'productID' => 'required', 'amount' => 'required' ]);
-        if(Products::where('productCode',$request->get('productID'))->exists()){
+    {
+        $this->validate($request, ['productID' => 'required', 'amount' => 'required']);
+        if (Products::where('productCode', $request->get('productID'))->exists()) {
             $stock = new StockIn([
-            'productID' => $request->get('productID'),
-            'amount' => $request->get('amount')] );
+                'productID' => $request->get('productID'),
+                'amount' => $request->get('amount')]);
             $stock->save();
-           // $qualityProduct = Products::where('productCode',$request->get('productID'));
-        //    $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->get('quantityInStock');
-        $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->first()->quantityInStock; 
-        $qualityProduct = $qualityProduct+$request->get('amount');
+            // $qualityProduct = Products::where('productCode',$request->get('productID'));
+            //    $qualityProduct = Products::select('quantityInStock')->where('productCode',$request->get('productID'))->get('quantityInStock');
+            $qualityProduct = Products::select('quantityInStock')->where('productCode', $request->get('productID'))->first()->quantityInStock;
+            $qualityProduct = $qualityProduct + $request->get('amount');
 
-        $products = Products::where('productCode',$request->get('productID'))->first();
-        $products->timestamps = false;
-        $products-> update(['quantityInStock' => $qualityProduct]);
-        return redirect()->route('stock.index')->with('success','New products have been added.');
-        }
-        else{
-            return redirect()->route('stock.index')->with('error','Do not have this ProductID');
+            $products = Products::where('productCode', $request->get('productID'))->first();
+            $products->timestamps = false;
+            $products->update(['quantityInStock' => $qualityProduct]);
+            return redirect()->route('stock.index')->with('success', 'New products have been added.');
+        } else {
+            return redirect()->route('stock.index')->with('error', 'Do not have this ProductID');
         }
 
-        
     }
 
     /**
@@ -110,14 +109,13 @@ class StockInController extends Controller
     public function destroy($id)
     {
         $stock = StockIn::find($id);
-        $qualityProduct = Products::select('quantityInStock')->where('productCode',$stock['productID'])->first()->quantityInStock;
-        $qualityProduct = $qualityProduct-$stock['amount'];
-        $products = Products::where('productCode',$stock['productID'])->first();
+        $qualityProduct = Products::select('quantityInStock')->where('productCode', $stock['productID'])->first()->quantityInStock;
+        $qualityProduct = $qualityProduct - $stock['amount'];
+        $products = Products::where('productCode', $stock['productID'])->first();
         $products->timestamps = false;
-        $products-> update(['quantityInStock' => $qualityProduct]);
+        $products->update(['quantityInStock' => $qualityProduct]);
         $stock->delete();
-        return redirect()->route('stock.index')->with('success','This products have been deleted!');
+        return redirect()->route('stock.index')->with('success', 'This products have been deleted!');
     }
 
-   
 }

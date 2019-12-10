@@ -11,11 +11,14 @@ class PaymentsController extends Controller
     public function index()
     {
         $payments = Payments::all()->toArray();
-        return view('payments.index', compact('payments'));
+
+        return view('payments.index')
+            ->with(compact('payments'));
     }
 
     public function create()
     {
+
         return view('payments.create');
         //
     }
@@ -41,6 +44,7 @@ class PaymentsController extends Controller
 
     public function edit($customerNumber)
     {
+
         $employees = Employees::where('employeeNumber', $employeeNumber)->first();
         return view('employee.editEmployee', compact('employees', 'employeeNumber'));
     }

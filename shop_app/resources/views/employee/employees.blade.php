@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','SHOP')
 @section('content')
 <section id="gigs" class="container">
@@ -14,7 +14,6 @@
         <a href="/employees/create" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
-
     <table class="table table-bordered table-striped">
       <tr>
         <th>employeeNumber</th>

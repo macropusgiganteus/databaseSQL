@@ -30,15 +30,14 @@
           <div class="dropdown-content">
             <a href="/employees" >Employee</a>
             <a href="/customers" >Customer</a>
-            <a href="/stock/index">Stock In</a>
             <a href="/payments/index">Payments</a>
           </div>
         </li> 
         <li>
-          <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
+            <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
         </li> 
         <li>
-          <a href="/login">Log in</a>
+            <a href="/logout">Log out</a>
         </li>
 
       </ul>

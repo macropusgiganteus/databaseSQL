@@ -11,7 +11,9 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = Employees::all()->toArray();
-        return view('employee.employees', compact('employees'));
+
+        return view('employee.employees')
+            ->with(compact('employees'));
     }
 
     public function create()
@@ -47,6 +49,7 @@ class EmployeesController extends Controller
 
     public function edit($employeeNumber)
     {
+
         $employees = Employees::where('employeeNumber', $employeeNumber)->first();
         return view('employee.editEmployee', compact('employees', 'employeeNumber'));
     }

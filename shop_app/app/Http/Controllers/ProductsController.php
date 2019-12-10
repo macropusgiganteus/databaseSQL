@@ -25,8 +25,7 @@ class ProductsController extends Controller
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
 
-        return
-        view('product.index')
+        return view('product.index')
             ->with(compact('products'))
             ->with(compact('productScale'))
             ->with(compact('productVendor'));
@@ -34,6 +33,7 @@ class ProductsController extends Controller
 
     public function create()
     {
+
         return view('product.create');
     }
 

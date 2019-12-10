@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends('layouts.Layout_Sales')
 @section ('title','SHOP')
 @section('content')
 <div class="container">
