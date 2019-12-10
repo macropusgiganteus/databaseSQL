@@ -2,33 +2,31 @@
 @section ('title','SHOP')
 @section('content')
 <div class="container">
-    <h1>Stock In</h1>
-    <button class="btn btn-reverse"><a href="/stock/create">Add</a></button>
+    <h1>Promotion : Buy 1 Get 1 </h1>
+    <button class="btn btn-reverse"><a href="/buy1get1/create">Add Product</a></button>
 </div>
 <section id="gigs" class="container">
     <table class="table table-bordered table-striped">
         <tr>
             <th>ProductID</th>
-            <th>Amount</th>
             <th>Time Created</th>
-            <th>Time updated</th>
+            <th>Expiry Time</th>
             {{-- <th>Edit</th> --}}
             <th>Delete</th>
         </tr>
-        @foreach($stock as $row)
+        @foreach($products as $row)
         <tr>
-            <td>{{$row['productID']}}</td>
-            <td>{{$row['amount']}}</td>
+            <td>{{$row['ProductCode']}}</td>
             <td>{{$row['created_at']}}</td>
-            <td>{{$row['updated_at']}}</td>
+            <td>{{$row['EXP_date']}}</td>
             {{-- <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td> --}}
             <td>
-            <form method="post" class="delete_form" action="{{action('StockInController@destroy', $row['id'])}}">
+            <form method="post" class="delete_form" action="{{action('Buy1get1controller@destroy', $row['id'])}}">
             {{csrf_field()}}
             <input type="hidden" name="_method" value="DELETE" />
             <button type="submit" class="btn btn-danger">Delete</button>
             </form>
-            </td>
+            </td> 
         </tr>  
         @endforeach
     </table>

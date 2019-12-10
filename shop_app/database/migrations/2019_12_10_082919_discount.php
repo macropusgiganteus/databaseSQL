@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class StockinTable extends Migration
+class Discount extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class StockinTable extends Migration
      */
     public function up()
     {
-        Schema::create('instock', function (Blueprint $table) {
+        Schema::create('discount', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('productID');
-            $table->integer('amount');
+            $table->string('PromotionCode');
+            $table->integer('Count');
             $table->timestamps();
+            $table->date('EXP_date');
         });
     }
 
@@ -28,6 +29,6 @@ class StockinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
+        Schema::dropIfExists('discount');
     }
 }
