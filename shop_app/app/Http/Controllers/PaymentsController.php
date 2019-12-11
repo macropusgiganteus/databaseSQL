@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Customers;
 use App\Http\Controllers\Controller;
 use App\Payments;
-use App\Customers;
 use Illuminate\Http\Request;
 
 class PaymentsController extends Controller
@@ -19,7 +19,7 @@ class PaymentsController extends Controller
 
     public function create()
     {
-
+        // return $request->input('total');
         return view('payments.create');
         //
     }
@@ -30,7 +30,7 @@ class PaymentsController extends Controller
             'customerNumber' => 'required',
             'checkNumber' => 'required',
             'amount' => 'required']);
-            $point =  $request->get('amount') / 100 * 3;
+        $point = $request->get('amount') / 100 * 3;
         $payments = new Payments([
             'customerNumber' => $request->get('customerNumber'),
             'checkNumber' => $request->get('checkNumber'),
@@ -38,7 +38,7 @@ class PaymentsController extends Controller
             'amount' => $request->get('amount'),
             'point' => $point,
         ]);
-        $customer = Customers::where('customerNumber', $request->get('customerNumber') )->get()->first();
+        $customer = Customers::where('customerNumber', $request->get('customerNumber'))->get()->first();
         $customer->sumpoint += $point;
         $customer->timestamps = false;
         $customer->save();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Buy1Get1;
 use App\Cart;
 use App\Customers;
 use App\Discount;
@@ -22,16 +23,28 @@ class Controller extends BaseController
     public function addrequiredDay()
     {
         $discount = 0;
-
         $customerNumber = Cookie::get('ID');
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
         $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
+        $Inpromotion = [];
+        $CartPromotion = [];
+        $buy1get1 = Buy1Get1::all()->toArray();
+        foreach ($buy1get1 as $product) {
+            array_push($Inpromotion, $product['ProductCode']);
+        }
+        foreach ($carts as $product) {
+            if (collect($Inpromotion)->contains($product['productCode'])) {
+                array_push($CartPromotion, $product['productCode']);
+            }
+        }
         return view('addRday')
             ->with(compact('customerNumber'))
             ->with(compact('carts'))
             ->with(compact('orderNumber'))
-            ->with(compact('discount'));
+            ->with(compact('discount'))
+            ->withCookie('discount')
+            ->with(compact('Inpromotion'));
     }
 
     public function addOrder(Request $request)
@@ -97,6 +110,15 @@ class Controller extends BaseController
                     ->with(compact('total'));
                 break;
         }
+
+    }
+
+    public function buy1get1(Request $request)
+    {
+        $customerNumber = Cookie::get('ID');
+        $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
+        $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
+        return $request->input('usepro');
 
     }
 

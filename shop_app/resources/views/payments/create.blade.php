@@ -11,7 +11,7 @@
             <div class="input-group">
               <label for="ProductID">customerNumber</label>
               <input type="text" name="customerNumber" id="customerNumber" class="input-box" placeholder=""
-                maxlength="50" >
+                maxlength="50" value="{{ Cookie::get('ID') }}">
             </div>
             <div class="input-group">
               <label for="amount">checkNumber</label>
@@ -21,7 +21,7 @@
             <div class="input-group">
                 <label for="amount">Amount</label>
                 <input type="number" name="amount" id="amount" class="input-box" placeholder=""
-                maxlength="50" >
+                maxlength="50" value="{{ Cookie::get('total') }}">
               </div>
           <input type="submit"  value="Pay" class="btn btn-reverse">
           </form>
