@@ -5,7 +5,7 @@
 <section>
     <h1 class="container">Orders</h1>
     <br><br>
-    {{-- <a href="/orders/calpoint" onclick="" class="btn btn-reverse">Update point</a> --}}
+    <a href="/orders/calpoint" onclick="" class="btn btn-reverse">Update point</a>
     <table  class="table table-bordered table-striped">
         <tr>
             <th>orderNumber</th>

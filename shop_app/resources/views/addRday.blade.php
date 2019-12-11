@@ -27,7 +27,7 @@
             <td>{{$item['productCode']}}</td>
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
-            @if(collect($Inpromotion)->contains($item['productCode']))
+            @if(collect($Inpromotion ?? '')->contains($item['productCode']))
             @if($item['quantityOrdered']>1)
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] - $item['priceEach']}}</td>
             <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']- $item['priceEach']}}/>
@@ -39,7 +39,7 @@
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
             <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
             @endif
-            @if(collect($Inpromotion)->contains($item['productCode']))
+            @if(collect($Inpromotion ?? '')->contains($item['productCode']))
             @if($item['quantityOrdered']>1)
             <input type="hidden" name="usepro" value="{{$item['productCode']}}">
             {{-- <td><button type="submit" class="btn btn-primary">OK</button></td> --}}
