@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
-use App\Products;
+use App\Customers;
 use App\Orderdetail;
 use App\Orders;
-use Illuminate\Http\Request;
+use App\payments;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Cookie;
 
@@ -17,7 +18,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-     public function addrequiredDay(){
+    public function addrequiredDay()
+    {
         $customerNumber = Cookie::get('ID');
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
@@ -26,8 +28,9 @@ class Controller extends BaseController
             ->with(compact('customerNumber'))
             ->with(compact('carts'))
             ->with(compact('orderNumber'));
-     }
-     public function addOrder(Request $request){
+    }
+    public function addOrder(Request $request)
+    {
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
         $customerNumber = Cookie::get('ID');
@@ -45,17 +48,17 @@ class Controller extends BaseController
         // //---------------------
         $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
         $line = 1;
-        foreach($carts as $cart){
-             $details = new Orderdetail([
-            'orderNumber' => $orderNumber,
-            'productCode' => $cart['productCode'],
-            'quantityOrdered' => $cart['quantityOrdered'],
-            'priceEach' =>  $cart['priceEach'],
-            'orderLineNumber'=> $line,
+        foreach ($carts as $cart) {
+            $details = new Orderdetail([
+                'orderNumber' => $orderNumber,
+                'productCode' => $cart['productCode'],
+                'quantityOrdered' => $cart['quantityOrdered'],
+                'priceEach' => $cart['priceEach'],
+                'orderLineNumber' => $line,
             ]);
             $details->timestamps = false;
             $details->save();
-            $line+=1;
+            $line += 1;
         }
         Cart::truncate(); //delete data cart
         //---------------------
@@ -65,5 +68,35 @@ class Controller extends BaseController
             ->with(compact('carts'))
             ->with(compact('rday'))
             ->with(compact('orderNumber'));
-     }
+    }
+
+    public function calpoint()
+    {
+        $point = payments::select('*')->get()->toArray();
+        foreach ($point as $cus) {
+            $amount = $cus['amount'];
+            $amount = ($amount / 100) * 3;
+            $amount = intval($amount);
+            $pay = payments::where('checkNumber', $cus['checkNumber'])->get()->first();
+            $pay->point = $amount;
+            $pay->timestamps = false;
+            $pay->update();
+        }
+        $cus = Customers::select('*')->get()->toArray();
+        foreach ($cus as $cust) {
+            //dd($cust['sumpoint']);
+            $custo = Customers::where('customerNumber', $cust['customerNumber'])->get()->first();
+            $custo->sumpoint = 0;
+            $custo->timestamps = false;
+            $custo->save();
+        }
+        foreach ($point as $pay) {
+            $customer = Customers::where('customerNumber', $pay['customerNumber'])->get()->first();
+            $customer->sumpoint += $pay['point'];
+            $customer->timestamps = false;
+            $customer->update();
+        }
+
+        return redirect()->back()->with('success', 'Update point is success');
+    }
 }

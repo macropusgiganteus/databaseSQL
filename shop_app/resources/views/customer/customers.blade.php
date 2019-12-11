@@ -26,6 +26,7 @@
         <th>country</th>
         <th>salesRepEmployeeNumber</th>
         <th>creditLimit</th>
+        <th>sumpoint</th>
         @if(Cookie::get('jobtitle'))
 
         <th>Edit</th>
@@ -47,6 +48,7 @@
       <td>{{$customer['country']}}</td>
       <td>{{$customer['salesRepEmployeeNumber']}}</td>
       <td>{{$customer['creditLimit']}}</td>
+      <td>{{$customer['sumpoint']}}</td>
       @if(Cookie::get('jobtitle'))
       <td><a href="{{action('CustomersController@edit', $customer['customerNumber'])}}" class="btn btn-primary">Edit</a></td>
       <td>

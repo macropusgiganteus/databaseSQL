@@ -104,12 +104,11 @@ class EmployeesController extends Controller
         return redirect()->route('employees.index');
     }
 
-    public function promote(Request $request, $employeeNumber)
+    public function promote(Request $request)
     {
-        $employees = Employees::where('employeeNumber', $employeeNumber)->first();
-        return $employees;
-        $employees->update('jobTitle', $request->input('jobTitle'));
+        $employees = Employees::where('employeeNumber', $request->input('employeeNumber'))->first();
         $employees->timestamps = false;
+        $employees->update(['jobTitle' => $request->input('jobTitle')]);
         $employees->save();
         return redirect('/employees');
     }
