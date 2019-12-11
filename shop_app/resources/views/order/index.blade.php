@@ -5,7 +5,7 @@
 <section>
     <h1 class="container">Orders</h1>
     <br><br>
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped container">
         <tr>
             <th>orderNumber</th>
             <th>orderDate</th>
