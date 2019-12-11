@@ -8,6 +8,7 @@ use App\Discount;
 use App\Orderdetail;
 use App\Orders;
 use App\payments;
+use App\Products;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,7 +23,7 @@ class Controller extends BaseController
     public function addrequiredDay()
     {
         $discount = 0;
-
+        $code = "";
         $customerNumber = Cookie::get('ID');
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
@@ -36,12 +37,12 @@ class Controller extends BaseController
 
     public function addOrder(Request $request)
     {
-
         switch ($request->input('action')) {
             case 'useCode':
                 $this->validate($request, ['code' => 'required']);
                 $code = Discount::where('PromotionCode', $request->get('code'))->get();
                 $discount = $code->first()->DiscountAmount;
+                $code = $code->first()->PromotionCode;
                 $customerNumber = Cookie::get('ID');
                 $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
                 $orderNumber += 1;
@@ -50,7 +51,8 @@ class Controller extends BaseController
                     ->with(compact('customerNumber'))
                     ->with(compact('carts'))
                     ->with(compact('orderNumber'))
-                    ->with(compact('discount'));
+                    ->with(compact('discount'))
+                    ->with(compact('code'));
                 break;
             case 'Confrim':
                 $total = $request->input('total');
@@ -60,6 +62,14 @@ class Controller extends BaseController
                 $orderNumber += 1;
                 $customerNumber = Cookie::get('ID');
                 $rday = $request->get('rday');
+                //---------------------
+                if($request->get('code') != null){
+                    $code = Discount::where('PromotionCode', $request->get('code'))->first();
+                    $codeAmount  = ($code->first()->Count) - 1;
+                    $code->timestamps = false;
+                    $code->update(['Count' => $codeAmount]);
+                }
+
                 //---------------------
                 $order = new Orders([
                     'orderNumber' => $orderNumber,
@@ -84,11 +94,18 @@ class Controller extends BaseController
                     $details->timestamps = false;
                     $details->save();
                     $line += 1;
+
+                    $product = Products::where('productCode',$cart['productCode'])->first();
+                    $qtyProduct = $product->first()->quantityInStock;
+                    $qtyProduct = $qtyProduct - $cart['quantityOrdered'] ;
+                    $product->timestamps = false;
+                    $product->update(['quantityInStock' => $qtyProduct]);
                 }
+                //---------------------------
 
                 Cart::truncate(); //delete data cart
                 //---------------------
-
+               
                 return view('addOrder')
                     ->with(compact('customerNumber'))
                     ->with(compact('carts'))

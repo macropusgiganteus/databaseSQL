@@ -95,7 +95,9 @@
                       <td><input type="text" class="input-box" name="code" id="code" value=""></td>
                       <td><button type="submit" name="action" class="btn btn-success" value="useCode">Apply</button></td>
                     @else
+                  
                       <td><input type="text" class="input-box" name="code" id="code" value="Code is used" disabled></td>
+                      <td><input type="hidden" class="input-box" name="code" id="code" value="{{$code}}"></td>
                     @endif
                 </tr>
           </table>
