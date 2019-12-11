@@ -27,7 +27,6 @@
             <td >
                 <select name="status" id="status" class="form-control vendor">
                 <option value="{{$order['status']}}">{{$order['status']}}</option>
-                <option value="Shipped">Shipped</option>
                 <option value="resolved">resolved</option>
                 <option value="on hold">on hold</option>
                 <option value="in process">in process</option>
