@@ -63,3 +63,9 @@ Route::resource('cart', 'CartController');
 Route::resource('buy1get1', 'Buy1get1controller');
 Route::get('/buy1get1', 'Buy1get1controller@index');
 Route::resource('discount', 'DiscountController');
+
+
+Route::resource('orders', 'OrdersController');
+Route::get('/orders', 'OrdersController@index');
+
+
