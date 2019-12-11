@@ -10,23 +10,27 @@
           {{csrf_field()}}
           <label for="Customer number">Customer number</label>
           <div class="input-group">
-            <input type="number" name="customerNumber" id="credit" class="input-box" maxlength="20">
+            <input type="number" name="customerNumber" id="customerNumber" class="input-box" maxlength="20">
+        </div>
+          <label for="Customer Name">Customer Name</label>
+          <div class="input-group">
+            <input type="text" name="customerName" id="customerName" class="input-box" maxlength="20">
         </div>
         <label for="First Name">First Name</label>
         <div class="input-group">
-          <input type="text" name="FirstName" id="first_name" class="input-box" maxlength="50">
+          <input type="text" name="FirstName" id="FirstName" class="input-box" maxlength="50">
         </div>
         <label for="Last Name">Last Name</label>
         <div class="input-group">
           <input type="text" name="LastName" id="last_name" class="input-box" maxlength="50">
         </div>
-        <label for="Company">Company</label>
-        <div class="input-group">
-          <input type="text" name="Company" id="company" class="input-box" maxlength="50">
-        </div>
-        <label for="Adress">Adress</label>
+        <label for="Adress">Adress Line 1</label>
         <div class="input-group">
           <input type="text" name="addressLine1" id="addr" class="input-box" maxlength="100">
+        </div>
+        <label for="Adress">Adress Line 2</label>
+        <div class="input-group">
+          <input type="text" name="addressLine2" id="addr" class="input-box" maxlength="100">
         </div>
         <table>
           <tr>

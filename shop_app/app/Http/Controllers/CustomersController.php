@@ -43,7 +43,7 @@ class CustomersController extends Controller
             'customerNumber' => 'required',
             'FirstName' => 'required',
             'LastName' => 'required',
-            'Company' => 'required',
+            'customerName' => 'required',
             'addressLine1' => 'required',
             'city' => 'required',
             'country' => 'required',
@@ -52,22 +52,22 @@ class CustomersController extends Controller
             //state not required
         ]);
         $customer = new customers([
-            'customerNumber' => $request->get('first_name'),
-            'customerName' => $request->get('first_name'),
-            'contactLastName' => $request->get('first_name'),
-            'contactLastName' => $request->get('last_name'),
-            'customerName' => $request->get('company'),
-            'addressLine1' => $request->get('addr'),
-            'city' => $request->get('city'),
-            'country' => $request->get('country'),
-            'postalCode' => $request->get('postal_code'),
+            'customerNumber' => $request->get('customerNumber'),
+            'customerName' => $request->get('customerName'),
+            'contactLastName' => $request->get('FirstName'),
+            'contactFirstName' => $request->get('LastName'),
             'phone' => $request->get('phone'),
-            'salesRepEmployeeNumber' => $request->get('e_num'),
+            'addressLine1' => $request->get('addressLine1'),
+            'addressLine2' => $request->get('addressLine2'),
+            'city' => $request->get('city'),
             'state' => $request->get('state'),
-            'creditLimi' => $request->get('credit')]);
+            'postalCode' => $request->get('postalCode'),
+            'country' => $request->get('country'),
+            'salesRepEmployeeNumber' => $request->get('salesRepEmployeeNumber'),
+            'creditLimit' => $request->get('creditLimit')]);
         $customer->timestamps = false;
         $customer->save();
-        return redirect()->route('customers.index')->with('success', 'New products have been added.');
+        return redirect('/customers')->with('success', 'New products have been added.');
     }
 
     /**
