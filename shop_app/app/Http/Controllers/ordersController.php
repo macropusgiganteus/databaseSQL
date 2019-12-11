@@ -33,17 +33,4 @@ class OrdersController extends Controller
 
         return redirect()->back()->with('success');
     }
-
-    // public function shipped()
-    // {
-    //     $inProcess = Orders::where('status' , '=' , 'in process')->get();
-    //     if(Orders::where('status',$inProcess)){
-    //     $order = Orders::where('shippedDate' , '<=' , date('Y-m-d'))->get();
-    //     $order->status = 'Shipped'; 
-        
-    //     }
-    //     $order->update(); 
-    //     return redirect()->back()->with('success');
-        
-    // }
 }
