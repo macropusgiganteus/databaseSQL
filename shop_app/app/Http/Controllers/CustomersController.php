@@ -39,7 +39,32 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'company' => 'required',
+            'addr' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'postal_code' => 'required',
+            'phone' => 'required',
+            'e_num' => 'required',
+            //state not required
+        ]);
+        $add = new customers([
+            'contactFirstName' => $request->get('first_name'),
+            'contactLastName' => $request->get('last_name'),
+            'customerName' => $request->get('company'),
+            'addressLine1' => $request->get('addr'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'postalCode' => $request->get('postal_code'),
+            'phone' => $request->get('phone'),
+            'salesRepEmployeeNumber' => $request->get('e_num'),
+            'state' => $request->get('state'),
+            'creditLimi' => $request->get('credit')]);
+        $add->save();
+        return redirect()->route('check_customerID')->with('success', 'New products have been added.');
     }
 
     /**
@@ -88,4 +113,5 @@ class CustomersController extends Controller
         $customers->delete();
         return redirect('/customers');
     }
+
 }
