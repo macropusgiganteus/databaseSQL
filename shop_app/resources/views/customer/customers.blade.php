@@ -4,9 +4,11 @@
 
 <section id="gigs" >
     <h1 class="container">Customers</h1>
+    @if(Cookie::get('jobtitle'))
     <div class="container">
         <a href="/customers/create" class="btn btn-reverse">Add a customer</a>
     </div>
+    @endif
     <br><br>
     <div style="overflow-x:auto; white-space: nowrap;">
     <table class="table table-bordered table-striped">
@@ -24,8 +26,11 @@
         <th>country</th>
         <th>salesRepEmployeeNumber</th>
         <th>creditLimit</th>
+        @if(Cookie::get('jobtitle'))
+
         <th>Edit</th>
         <th>Delete</th>
+        @endif
     </tr>
     @foreach ($customers as $customer)
     <tr>
@@ -42,6 +47,7 @@
       <td>{{$customer['country']}}</td>
       <td>{{$customer['salesRepEmployeeNumber']}}</td>
       <td>{{$customer['creditLimit']}}</td>
+      @if(Cookie::get('jobtitle'))
       <td><a href="{{action('CustomersController@edit', $customer['customerNumber'])}}" class="btn btn-primary">Edit</a></td>
       <td>
       <form method="post" class="delete_form" action="{{action('CustomersController@destroy', $customer['customerNumber'])}}">
@@ -51,6 +57,7 @@
       <button type="submit" class="btn btn-danger">Delete</button>
       </form>
       </td>
+      @endif
   </tr>  
   @endforeach
 </table>

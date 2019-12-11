@@ -39,7 +39,35 @@ class CustomersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validation = $request->validate([
+            'customerNumber' => 'required',
+            'FirstName' => 'required',
+            'LastName' => 'required',
+            'Company' => 'required',
+            'addressLine1' => 'required',
+            'city' => 'required',
+            'country' => 'required',
+            'postalCode' => 'required',
+            'phone' => 'required',
+            //state not required
+        ]);
+        $customer = new customers([
+            'customerNumber' => $request->get('first_name'),
+            'customerName' => $request->get('first_name'),
+            'contactLastName' => $request->get('first_name'),
+            'contactLastName' => $request->get('last_name'),
+            'customerName' => $request->get('company'),
+            'addressLine1' => $request->get('addr'),
+            'city' => $request->get('city'),
+            'country' => $request->get('country'),
+            'postalCode' => $request->get('postal_code'),
+            'phone' => $request->get('phone'),
+            'salesRepEmployeeNumber' => $request->get('e_num'),
+            'state' => $request->get('state'),
+            'creditLimi' => $request->get('credit')]);
+        $customer->timestamps = false;
+        $customer->save();
+        return redirect()->route('customers.index')->with('success', 'New products have been added.');
     }
 
     /**
@@ -88,4 +116,5 @@ class CustomersController extends Controller
         $customers->delete();
         return redirect('/customers');
     }
+
 }

@@ -49,6 +49,7 @@ Route::get('/checklist', function () {
     return view('checklist');
 });
 
+Route::get('/cart/search', 'CartController@search');
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
 //Route::post('/cart/clear','CartController@clear');
@@ -62,4 +63,3 @@ Route::resource('cart', 'CartController');
 Route::resource('buy1get1', 'Buy1get1controller');
 Route::get('/buy1get1', 'Buy1get1controller@index');
 Route::resource('discount', 'DiscountController');
-

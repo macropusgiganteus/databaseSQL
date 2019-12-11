@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
     <h1>Payments History</h1>
+    @if(Cookie::get('jobtitle'))
     <button class="btn btn-reverse"><a href="/payments/create">Add</a></button>
+    @endif
 </div>
 <section id="gigs" class="container">
     <table class="table table-bordered table-striped">

@@ -4,9 +4,11 @@
 
 <section id="gigs" >
     <h1 class="container">Employees</h1>
+    @if(Cookie::get('jobtitle'))
     <div class="container">
         <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
     </div>
+    @endif
     <br><br>
     <table class="table table-bordered table-striped">
       <tr>
