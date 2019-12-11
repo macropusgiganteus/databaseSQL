@@ -67,5 +67,6 @@ Route::resource('discount', 'DiscountController');
 
 Route::resource('orders', 'OrdersController');
 Route::get('/orders', 'OrdersController@index');
+Route::post('/status', 'OrdersController@status');
 
 Route::get('/calpoint', 'Controller@calpoint');
