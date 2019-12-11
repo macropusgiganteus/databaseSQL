@@ -21,7 +21,7 @@
         <th>extension</th>
         <th>jobTitle</th>
         <th>Promote/Demote</th>
-        <th>Edit</th>
+        {{-- <th>Edit</th> --}}
         <th>Delete</th>
     </tr>
     @foreach ($employees as $employee)
@@ -33,25 +33,27 @@
       <td>{{$employee['officeCode']}}</td>
       <td>{{$employee['reportsTo']}}</td>
       <td>{{$employee['extension']}}</td>
+      <form method="post" class="" action="{{action('EmployeesController@promote')}}">
       <td>
         <select name="jobTitle" id="jobTitle" class="form-control vendor" 
           @if(collect($below)->contains($employee['jobTitle']) == false)
           disabled="disabled"
           @endif>
             <option value="">{{ $employee['jobTitle'] }}</option>
-            <option value="President">President</option>
-            <option value="VP Sales">VP Sales</option>
-            <option value="VP Marketing">VP Marketing</option>
-            <option value="Sales Manager (APAC)">Sales Manager (APAC)</option>
-            <option value="Sale Manager (EMEA)">Sale Manager (EMEA)</option>
-            <option value="Sales Manager (NA)">Sales Manager (NA)</option>
-            <option value="Sales Rep">Sales Rep</option>
-            
+            @foreach($below as $assign)
+            <option value="{{ $assign }}">{{ $assign }}</option>
+            @endforeach
         </select>
       </td>
       @if(collect($below)->contains($employee['jobTitle']) == true)
-        <td><a href="{{action('EmployeesController@promote', $employee['employeeNumber'])}}" class="btn btn-primary">OK</a></td>
-        <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
+          <td>
+              
+                  {{csrf_field()}}
+                  <input type="hidden" name="employeeNumber" value="{{ $employee['employeeNumber'] }}" />
+                  <button type="submit" class="btn btn-primary">OK</button>
+                  </form>
+          </td>
+        {{-- <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td> --}}
         <td>
           <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
           {{csrf_field()}}
