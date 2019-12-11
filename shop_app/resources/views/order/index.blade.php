@@ -5,7 +5,7 @@
 <section>
     <h1 class="container">Orders</h1>
     <br><br>
-    <table class="table table-bordered table-striped container">
+    <table  class="table table-bordered table-striped">
         <tr>
             <th>orderNumber</th>
             <th>orderDate</th>
@@ -22,9 +22,9 @@
             <td>{{$order['orderNumber']}}</td>
             <td>{{$order['orderDate']}}</td>
             <td>{{$order['requiredDate']}}</td>
-            <td>{{$order['shippedDate']}}</td>
             <form method="post"  action="{{action('OrdersController@status')}}">
-            <td width = "15%">
+            <td><input name="shippedDate" type="date" value ="{{$order['shippedDate']}}"></td>
+            <td >
                 <select name="status" id="status" class="form-control vendor">
                 <option value="{{$order['status']}}">{{$order['status']}}</option>
                 <option value="Shipped">Shipped</option>
@@ -35,7 +35,7 @@
                 <option value="cancelled">cancelled</option>
                 </select>
             </td>
-            <td>{{$order['comments']}}</td>
+            <td><input name="comments" type="text" value ="{{$order['comments']}}"></td>
             <td>{{$order['customerNumber']}}</td>
             <td>
                     {{csrf_field()}}

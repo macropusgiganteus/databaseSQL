@@ -18,8 +18,11 @@ class OrdersController extends Controller
     {
         $order = Orders::where('orderNumber' , $request->input('orderNumber'))->first();
         $order->status = $request->input('status');
+        $order->shippedDate = $request->input('shippedDate');
+        $order->comments = $request->input('comments');
         $order->timestamps = false;
         $order->update();
+
         return redirect()->back()->with('success','New discount code has been created.');
 
     }
