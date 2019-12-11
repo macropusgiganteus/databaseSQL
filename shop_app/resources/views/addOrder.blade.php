@@ -4,7 +4,7 @@
 
 <section id="gigs" class="container">
     <div class="row">
-        <div class="col-md-6"><h2>Order number : #</h2></div>
+        <div class="col-md-6"><h2>Order number : # {{$orderNumber}}</h2></div>
         <div class="col-md-6"><h2>Customer number : # {{$customerNumber}}</h2></div>
     </div>
     <table class="table table-bordered table-striped">

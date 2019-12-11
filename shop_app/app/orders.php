@@ -9,5 +9,5 @@ class Orders extends Model
     protected $keyType = 'int';
     protected $primaryKey = 'orderNumber';
     protected $table = 'orders';
-    protected $fillable = ['orderNumber', 'orderDate', 'requiredDate', 'shippedDate', 'status', 'comments'];
+    protected $fillable = ['orderNumber', 'orderDate', 'requiredDate', 'shippedDate', 'status', 'comments','customerNumber'];
 }
