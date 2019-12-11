@@ -33,7 +33,6 @@ Route::get('/employees/add', function () {
 });
 
 Route::get('/payments/index', 'PaymentsController@index');
-
 Route::resource('payments', 'PaymentsController');
 
 Route::resource('product', 'ProductsController');
@@ -58,7 +57,6 @@ Route::resource('cart', 'CartController');
 Route::any('/addRday', 'Controller@addrequiredDay');
 Route::any('/addOrder/success', 'Controller@addOrder');
 
-
 //-----------------------------------------------------------
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
@@ -73,3 +71,4 @@ Route::get('/orders', 'OrdersController@index');
 Route::post('/status', 'OrdersController@status');
 
 Route::get('/calpoint', 'Controller@calpoint');
+Route::any('/buy1get1/usepromotion', 'Controller@buy1get1');
