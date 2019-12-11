@@ -22,23 +22,35 @@
         </tr>
         
         @foreach($carts as $item)
-        <form method="post" class="" action="{{action('Controller@buy1get1')}}">
         <tr>
             <td>{{$item['productName']}}</td>
             <td>{{$item['productCode']}}</td>
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
+            @if(collect($Inpromotion)->contains($item['productCode']))
+            @if($item['quantityOrdered']>1)
+            <td>{{ $item['quantityOrdered'] * $item['priceEach'] - $item['priceEach']}}</td>
+            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']- $item['priceEach']}}/>
+            @else
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
+            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
+            @endif
+            @else
+            <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
+            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
+            @endif
             @if(collect($Inpromotion)->contains($item['productCode']))
             @if($item['quantityOrdered']>1)
             <input type="hidden" name="usepro" value="{{$item['productCode']}}">
-            <td><button type="submit" class="btn btn-primary">OK</button></td>
+            {{-- <td><button type="submit" class="btn btn-primary">OK</button></td> --}}
             <td><button type="submit" name="action" class="btn btn-success" value="buy1get1">Buy1Get1</button></td>
+            @else
+            <td></td>
             @endif
+            @else
+            <td></td>
             @endif
-            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
         </tr>  
-        </form>
         @endforeach
     </table>
   </section>
