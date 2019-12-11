@@ -28,16 +28,15 @@ class PaymentsController extends Controller
         $this->validate($request, [
             'customerNumber' => 'required',
             'checkNumber' => 'required',
-            'paymentDate' => 'required',
             'amount' => 'required']);
-        $employee = new Employees([
+        $payments = new Payments([
             'customerNumber' => $request->get('customerNumber'),
             'checkNumber' => $request->get('checkNumber'),
-            'paymentDate' => $request->get('paymentDate'),
+            'paymentDate' => date('Y-m-d'),
             'amount' => $request->get('amount'),
         ]);
-        $employee->timestamps('paymentDate');
-        $employee->save();
+        $payments->timestamps = false;
+        $payments->save();
 
         return redirect('/payments');
     }

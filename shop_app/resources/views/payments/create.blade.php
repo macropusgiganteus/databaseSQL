@@ -15,7 +15,7 @@
             </div>
             <div class="input-group">
               <label for="amount">checkNumber</label>
-              <input type="number" name="checkNumber" id="checkNumber" class="input-box" placeholder=""
+              <input type="text" name="checkNumber" id="checkNumber" class="input-box" placeholder=""
               maxlength="50" >
             </div>
             <div class="input-group">

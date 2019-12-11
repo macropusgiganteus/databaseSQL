@@ -13,7 +13,7 @@
       </div>
       <div class="input-group">
         <label for="technologies">Password</label>
-        <input type="text" name="password" id="password" class="input-box" placeholder=""
+        <input type="password" name="password" id="password" class="input-box" placeholder=""
         maxlength="50" >
       </div>
       

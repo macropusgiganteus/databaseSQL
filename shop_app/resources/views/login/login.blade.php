@@ -22,7 +22,7 @@
       </div>
       <div class="input-group">
         <label for="technologies">Password</label>
-        <input type="text" name="password" id="technologies" class="input-box" placeholder=""
+        <input type="password" name="password" id="technologies" class="input-box" placeholder=""
         maxlength="50" >
       </div>
       

@@ -21,7 +21,7 @@
         <th>extension</th>
         <th>jobTitle</th>
         <th>Promote/Demote</th>
-        {{-- <th>Edit</th> --}}
+        <th>Edit</th>
         <th>Delete</th>
     </tr>
     @foreach ($employees as $employee)
@@ -50,7 +50,8 @@
         </select>
       </td>
       @if(collect($below)->contains($employee['jobTitle']) == true)
-        <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">OK</a></td>
+        <td><a href="{{action('EmployeesController@promote', $employee['employeeNumber'])}}" class="btn btn-primary">OK</a></td>
+        <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
         <td>
           <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
           {{csrf_field()}}
@@ -62,8 +63,8 @@
       @else
         <td></td>
         <td></td>
+        <td></td>
       @endif
-      {{-- <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td> --}}
       
   </tr>  
   @endforeach
