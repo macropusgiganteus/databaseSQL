@@ -28,8 +28,24 @@ class CartController extends Controller
         }
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
-        $customerNumber = Cookie::get('ID');        
-        return view('cart.create')
+        $customerNumber = Cookie::get('ID');
+        return view('cart.index')
+            ->with(compact('products'))
+            ->with(compact('customerNumber'))
+            ->with(compact('productScale'))
+            ->with(compact('productVendor'))
+            ->with(compact('carts'));
+    }
+
+    public function search(Request $request)
+    {
+        $carts = Cart::all()->toArray();
+        $customerNumber = Cookie::get('ID');
+        $search = $request->get('search');
+        $products = Products::where('productName', 'like', '%' . $search . '%')->get();
+        $productScale = Products::select('productScale')->distinct()->get();
+        $productVendor = Products::select('productVendor')->distinct()->get();
+        return view('cart.index')
             ->with(compact('products'))
             ->with(compact('customerNumber'))
             ->with(compact('productScale'))
@@ -41,13 +57,13 @@ class CartController extends Controller
     {
         $product = Products::where('productCode', $request->get('productCode'))->first();
         $customerNumber = Cookie::get('ID');
-        if(Cart::where('productCode',$request->get('productCode'))->exists()){
+        if (Cart::where('productCode', $request->get('productCode'))->exists()) {
             $qtyCart = Cart::select('quantityOrdered')->where('productCode', $request->get('productCode'))->first()->quantityOrdered;
-            $qtyCart = $qtyCart+$request->get('qty');
-            $Carts = Cart::where('productCode',$request->get('productCode'))->first();
+            $qtyCart = $qtyCart + $request->get('qty');
+            $Carts = Cart::where('productCode', $request->get('productCode'))->first();
             $Carts->timestamps = false;
-            $Carts-> update(['quantityOrdered' => $qtyCart]);
-        }else{
+            $Carts->update(['quantityOrdered' => $qtyCart]);
+        } else {
             $carts = new Cart([
                 'customerNumber' => $customerNumber,
                 'productCode' => $product['productCode'],
@@ -82,7 +98,8 @@ class CartController extends Controller
         return redirect('/cart.index');
     }
 
-    public function show($carts){
+    public function show($carts)
+    {
         $cart = Cart::where('productCode', $carts);
         $cart->delete();
         return redirect()->route('cart.index');
