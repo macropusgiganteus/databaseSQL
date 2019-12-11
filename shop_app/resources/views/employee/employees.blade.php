@@ -18,7 +18,8 @@
         <th>reportsTo</th>
         <th>extension</th>
         <th>jobTitle</th>
-        <th>Edit</th>
+        <th>Promote/Demote</th>
+        {{-- <th>Edit</th> --}}
         <th>Delete</th>
     </tr>
     @foreach ($employees as $employee)
@@ -31,8 +32,11 @@
       <td>{{$employee['reportsTo']}}</td>
       <td>{{$employee['extension']}}</td>
       <td>
-        <select name="jobTitle" id="jobTitle" class="form-control vendor">
-            <option value="">{{$employee['jobTitle']}}</option>
+        <select name="jobTitle" id="jobTitle" class="form-control vendor" 
+          @if(collect($below)->contains($employee['jobTitle']) == false)
+          disabled="disabled"
+          @endif>
+            <option value="">{{ $employee['jobTitle'] }}</option>
             <option value="President">President</option>
             <option value="VP Sales">VP Sales</option>
             <option value="VP Marketing">VP Marketing</option>
@@ -40,17 +44,25 @@
             <option value="Sale Manager (EMEA)">Sale Manager (EMEA)</option>
             <option value="Sales Manager (NA)">Sales Manager (NA)</option>
             <option value="Sales Rep">Sales Rep</option>
+            
         </select>
       </td>
-      <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
-      <td>
-      <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
-      {{csrf_field()}}
-      {{ method_field('DELETE') }} 
-      <input type="hidden" name="_method" value="DELETE" />
-      <button type="submit" class="btn btn-danger">Delete</button>
-      </form>
-      </td>
+      @if(collect($below)->contains($employee['jobTitle']) == true)
+        <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">OK</a></td>
+        <td>
+          <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
+          {{csrf_field()}}
+          {{ method_field('DELETE') }} 
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+          </td>
+      @else
+        <td></td>
+        <td></td>
+      @endif
+      {{-- <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td> --}}
+      
   </tr>  
   @endforeach
 </table>

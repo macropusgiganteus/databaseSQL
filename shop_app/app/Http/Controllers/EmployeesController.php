@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Employees;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class EmployeesController extends Controller
 {
@@ -11,9 +12,32 @@ class EmployeesController extends Controller
     public function index()
     {
         $employees = Employees::all()->toArray();
-
+        $below = [];
+        switch (Cookie::get('jobtitle')) {
+            case 'President':
+                $below = ['VP Sales', 'VP Marketing', 'Sales Manager (APAC)', 'Sale Manager (EMEA)', 'Sales Manager (NA)', 'Sales Rep'];
+                break;
+            case ('VP Sales'):
+                $below = ['Sales Manager (APAC)', 'Sale Manager (EMEA)', 'Sales Manager (NA)', 'Sales Rep'];
+                break;
+            case ('VP Marketing'):
+                $below = [];
+                break;
+            case ('Sales Manager (APAC)'):
+                $below = ['Sales Rep'];
+                break;
+            case ('Sale Manager (EMEA)'):
+                $below = ['Sales Rep'];
+                break;
+            case ('Sales Manager (NA)'):
+                $below = ['Sales Rep'];
+                break;
+            default:
+                $below = [];
+        }
         return view('employee.employees')
-            ->with(compact('employees'));
+            ->with(compact('employees'))
+            ->with(compact('below'));
     }
 
     public function create()
