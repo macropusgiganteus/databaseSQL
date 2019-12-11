@@ -40,19 +40,21 @@ class CustomersController extends Controller
     public function store(Request $request)
     {
         $validation = $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'company' => 'required',
-            'addr' => 'required',
+            'customerNumber' => 'required',
+            'FirstName' => 'required',
+            'LastName' => 'required',
+            'Company' => 'required',
+            'addressLine1' => 'required',
             'city' => 'required',
             'country' => 'required',
-            'postal_code' => 'required',
+            'postalCode' => 'required',
             'phone' => 'required',
-            'e_num' => 'required',
             //state not required
         ]);
-        $add = new customers([
-            'contactFirstName' => $request->get('first_name'),
+        $customer = new customers([
+            'customerNumber' => $request->get('first_name'),
+            'customerName' => $request->get('first_name'),
+            'contactLastName' => $request->get('first_name'),
             'contactLastName' => $request->get('last_name'),
             'customerName' => $request->get('company'),
             'addressLine1' => $request->get('addr'),
@@ -63,8 +65,9 @@ class CustomersController extends Controller
             'salesRepEmployeeNumber' => $request->get('e_num'),
             'state' => $request->get('state'),
             'creditLimi' => $request->get('credit')]);
-        $add->save();
-        return redirect()->route('check_customerID')->with('success', 'New products have been added.');
+        $customer->timestamps = false;
+        $customer->save();
+        return redirect()->route('customers.index')->with('success', 'New products have been added.');
     }
 
     /**
