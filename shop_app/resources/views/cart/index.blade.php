@@ -14,7 +14,8 @@
             <th>Quantity</th>
             <th>Delete</th>
         </tr>
-        @foreach($carts as $item)
+        <h1>Hello</h1>
+        {{-- @foreach($carts as $item)
         <tr>
             <td>{{$item['customerNumber']}}</td>
             <td>{{$item['productCode']}}</td>
@@ -29,7 +30,7 @@
             </form>
             </td>
         </tr>  
-        @endforeach
+        @endforeach --}}
     </table>
 </section>
 

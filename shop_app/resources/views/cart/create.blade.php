@@ -11,13 +11,15 @@
   </section>
 
   <section class="container">
+     
         <div class="row">
-            <div class="col-md-6"><h2>Cart Detail</h2></div>
+            <div class="col-md-6"><h2>Cart Detail [# {{$customerNumber}} ]</h2></div>
             <div class="col-md-6" align="right">
               <button name="clear_cart" id="clear_cart" class="btn-warning btn-xs">clear</button>
             </div>
           </div>
-    </div>
+        </div>
+ 
       <table class="table table-bordered table-striped">
         <tr>
             <th>productCode</th>
@@ -32,12 +34,18 @@
             <td>{{$item['productCode']}}</td>
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
-            {{-- <td><a href="{{action('CartController@edit', $item['id'])}}" class="btn btn-primary">Edit</a></td> --}}
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
+            <td><a href="{{action('CartController@destroy', $item['productCode'])}}" class="btn btn-danger">Delete</a></td>
         </tr>  
         @endforeach
-       
+        <tr>
+          <th>Total price : ? ฿</th>
+        </tr>
+      </div>
       </table>
+      <div class="col-md-6">
+        <button name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</button>
+      </div>
   </section>
   
 

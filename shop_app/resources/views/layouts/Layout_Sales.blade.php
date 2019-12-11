@@ -35,7 +35,7 @@
           </div>
         </li> 
         <li>
-          <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
+          <a href="/checklist"><span class="fas fa-cart-plus"></span></a>
         </li> 
         <li>
           <a href="/logout">Log out</a>
