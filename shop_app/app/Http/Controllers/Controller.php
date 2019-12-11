@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Cart;
-use App\Products;
+use App\Customers;
 use App\Orderdetail;
 use App\Orders;
 use App\Discount;
 use Illuminate\Http\Request;
+
+use App\payments;
+
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Cookie;
 
@@ -18,8 +22,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+
      public function addrequiredDay(){
         $discount = 0;
+
         $customerNumber = Cookie::get('ID');
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
@@ -96,6 +102,33 @@ class Controller extends BaseController
 
      }
 
+    public function calpoint()
+    {
+        $point = payments::select('*')->get()->toArray();
+        foreach ($point as $cus) {
+            $amount = $cus['amount'];
+            $amount = ($amount / 100) * 3;
+            $amount = intval($amount);
+            $pay = payments::where('checkNumber', $cus['checkNumber'])->get()->first();
+            $pay->point = $amount;
+            $pay->timestamps = false;
+            $pay->update();
+        }
+        $cus = Customers::select('*')->get()->toArray();
+        foreach ($cus as $cust) {
+            //dd($cust['sumpoint']);
+            $custo = Customers::where('customerNumber', $cust['customerNumber'])->get()->first();
+            $custo->sumpoint = 0;
+            $custo->timestamps = false;
+            $custo->save();
+        }
+        foreach ($point as $pay) {
+            $customer = Customers::where('customerNumber', $pay['customerNumber'])->get()->first();
+            $customer->sumpoint += $pay['point'];
+            $customer->timestamps = false;
+            $customer->update();
+        }
 
-
+        return redirect()->back()->with('success', 'Update point is success');
+    }
 }

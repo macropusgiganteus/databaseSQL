@@ -8,6 +8,7 @@ class Customers extends Model
 {
 
     protected $table = 'customers';
+    protected $primaryKey = 'customerNumber';
     protected $fillable = [
         'customerNumber',
         'customerName',

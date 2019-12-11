@@ -14,6 +14,7 @@
             <th>checkNumber</th>
             <th>paymentDate</th>
             <th>amount</th>
+            <th>member point</th>
             {{-- <th>Edit</th> --}}
             {{-- <th>Delete</th> --}}
         </tr>
@@ -23,6 +24,7 @@
             <td>{{$row['checkNumber']}}</td>
             <td>{{$row['paymentDate']}}</td>
             <td>{{$row['amount']}}</td>
+            <td>{{$row['point']}}</td>
             {{-- <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td> --}}
             {{-- <td>
             <form method="post" class="delete_form" action="{{action('PaymentsController@', $row['checkNumber'])}}">
