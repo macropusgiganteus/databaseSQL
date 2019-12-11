@@ -14,6 +14,7 @@ class Discountcontroller extends Controller
      */
     public function index()
     {   
+        $delCode = Discount::where('EXP_date' , '<=' ,date('Y-m-d'))->delete();
         $promotion = Discount::all()->toArray();
         return view('discount.index',compact('promotion'));
     }
