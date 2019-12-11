@@ -27,8 +27,10 @@ Route::get('/stock/index', 'StockInController@index');
 Route::resource('stock', 'StockInController');
 
 Route::resource('employees', 'EmployeesController');
-Route::get('/employees', 'EmployeesController@index');
-Route::get('/employees/create', 'EmployeesController@create');
+Route::get('/employees/promote', 'EmployeesController@promote');
+Route::get('/employees/add', function () {
+    return view('employee.addemployees');
+});
 
 Route::get('/payments/index', 'PaymentsController@index');
 
@@ -49,14 +51,10 @@ Route::get('/checklist', function () {
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
 
-
 Route::resource('buy1get1', 'Buy1get1controller');
-Route::get('/buy1get1','Buy1get1controller@index');
-Route::resource('discount','DiscountController');
-
-
+Route::get('/buy1get1', 'Buy1get1controller@index');
+Route::resource('discount', 'DiscountController');
 
 Route::get('/order/addorders', function () {
     return view('order.addorders');
 });
-

@@ -77,6 +77,15 @@ class EmployeesController extends Controller
         $employees->extension = $request->input('extension');
         $employees->timestamps = false;
         $employees->save();
+        return redirect()->route('employees.index');
+    }
+
+    public function promote(Request $request, $employeeNumber)
+    {
+        $employees = Employees::where('employeeNumber', $request->get('employeeNumber'))->first();
+        $employees->jobTitle = $request->input('jobTitle');
+        $employees->timestamps = false;
+        $employees->save();
         return redirect('/employees');
     }
 

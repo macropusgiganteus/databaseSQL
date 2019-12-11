@@ -5,7 +5,7 @@
 <section id="gigs" >
     <h1 class="container">Employees</h1>
     <div class="container">
-        <a href="/employees/create" class="btn btn-reverse">Add an employee</a>
+        <a href="/employees/add" class="btn btn-reverse">Add an employee</a>
     </div>
     <br><br>
     <table class="table table-bordered table-striped">
@@ -30,7 +30,18 @@
       <td>{{$employee['officeCode']}}</td>
       <td>{{$employee['reportsTo']}}</td>
       <td>{{$employee['extension']}}</td>
-      <td>{{$employee['jobTitle']}}</td>
+      <td>
+        <select name="jobTitle" id="jobTitle" class="form-control vendor">
+            <option value="">{{$employee['jobTitle']}}</option>
+            <option value="President">President</option>
+            <option value="VP Sales">VP Sales</option>
+            <option value="VP Marketing">VP Marketing</option>
+            <option value="Sales Manager (APAC)">Sales Manager (APAC)</option>
+            <option value="Sale Manager (EMEA)">Sale Manager (EMEA)</option>
+            <option value="Sales Manager (NA)">Sales Manager (NA)</option>
+            <option value="Sales Rep">Sales Rep</option>
+        </select>
+      </td>
       <td><a href="{{action('EmployeesController@edit', $employee['employeeNumber'])}}" class="btn btn-primary">Edit</a></td>
       <td>
       <form method="post" class="delete_form" action="{{action('EmployeesController@destroy', $employee['employeeNumber'])}}">
