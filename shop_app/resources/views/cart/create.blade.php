@@ -43,11 +43,17 @@
         </tr>
       </div>
       </table>
-      <div class="col-md-6">
-        <button name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</button>
-      </div>
+     
   </section>
   
+  <section class="container">
+    @if (!empty($carts))
+      <div class="col-md-6">
+        <a href="/addRday" name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</a>
+      </div>
+    @endif
+      
+  </section>
 
   <section id="gigs" >
     <form method="GET" action="{{action('CartController@index')}}">

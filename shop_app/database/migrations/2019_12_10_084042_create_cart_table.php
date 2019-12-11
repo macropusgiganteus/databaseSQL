@@ -15,6 +15,7 @@ class CreateCartTable extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->integer('customerNumber');
+            $table->string('productName');
             $table->string('productCode');
             $table->integer('quantityOrdered');
             $table->integer('priceEach');
