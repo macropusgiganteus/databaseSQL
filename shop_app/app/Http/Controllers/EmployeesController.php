@@ -52,7 +52,6 @@ class EmployeesController extends Controller
             'lastName' => 'required',
             'email' => 'required',
             'officeCode' => 'required',
-            'reportsTo' => 'required',
             'jobTitle' => 'required',
             'extension' => 'nullable']);
         $employee = new Employees([
@@ -70,7 +69,9 @@ class EmployeesController extends Controller
 
         return redirect('/employees');
     }
-
+    public function show(){
+        return view('employee.addemployees');
+    }
     public function edit($employeeNumber)
     {
 
