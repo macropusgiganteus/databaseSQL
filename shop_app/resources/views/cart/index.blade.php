@@ -1,6 +1,10 @@
 @extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','Cart')
 @section('content')
+@php
+    $total = 0
+@endphp
+
 <div class="container">
     <h1>Cart</h1>
     <button class="btn btn-reverse"><a href="/stock/create">Add</a></button>
