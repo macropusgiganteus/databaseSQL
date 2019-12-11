@@ -12,6 +12,12 @@ class CustomersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    
+
+
+
     public function index()
     {
         $customers = Customers::all()->toArray();

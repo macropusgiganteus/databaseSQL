@@ -43,3 +43,5 @@ Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
 
 Route::get('/order', 'ordersController@index');
+
+Route::get('/calpoint', 'Controller@calpoint');
