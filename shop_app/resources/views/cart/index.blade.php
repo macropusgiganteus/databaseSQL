@@ -10,9 +10,12 @@
      
         <div class="row">
             <div class="col-md-6"><h2>Cart Detail [# {{$customerNumber}} ]</h2></div>
+            @if (!empty($carts))
             <div class="col-md-6" align="right">
-              <button name="clear_cart" id="clear_cart" class="btn-warning btn-xs">clear</button>
+              <a href="{{action('CartController@clear')}}" class="btn btn-warning">clear</a>
             </div>
+            @endif
+            
           </div>
         </div>
  
@@ -40,10 +43,16 @@
         </tr>
       </div>
       </table>
+     
+    </section>
+
+    <section class="container">
+      @if (!empty($carts))
       <div class="col-md-6">
-        <button name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</button>
+        <a href="/addRday" name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</a>
       </div>
-  </section>
+    @endif
+    </section>
   <h1 class="container">Products</h1>
 
   <section id="gigs" class="container">  

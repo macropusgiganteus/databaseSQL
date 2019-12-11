@@ -51,6 +51,7 @@ Route::get('/checklist', function () {
 
 Route::get('/cart/search', 'CartController@search');
 Route::get('/cart/index', 'CartController@index');
+Route::get('/cart/clear','CartController@clear');
 Route::resource('cart', 'CartController');
 //Route::post('/cart/clear','CartController@clear');
 
