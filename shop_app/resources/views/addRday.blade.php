@@ -1,6 +1,9 @@
 @extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section('title','SHOP')
 @section('content')
+@php
+    $total = 0
+@endphp
 <section id="gigs" class="container">
     <div class="row">
     <div class="col-md-6"><h2>Order number : # {{$orderNumber}}</h2></div>
@@ -22,6 +25,7 @@
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
+            {{ $total += $item['quantityOrdered'] * $item['priceEach']}}
         </tr>  
         @endforeach
     </table>
@@ -30,8 +34,8 @@
   <section class="container">
     <table  class="table table-bordered table-striped">
         <tr>
-            <th>Total price:</th>
-            <th>      ฿</th>
+            <th><center><h4>Total price:</h4></center></th>
+            <th><center><h4>{{ $total }} ฿</h4></center></th>
           </tr>
     </table>
      
