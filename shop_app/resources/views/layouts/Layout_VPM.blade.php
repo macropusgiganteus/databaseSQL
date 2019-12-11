@@ -34,13 +34,21 @@
           </div>
         </li> 
         <li>
-          <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
-        </li>    
+            <a href="/cart/index"><span class="fas fa-cart-plus"></span></a>
+        </li> 
+        <li class="dropdown">
+            <p class="dropbtn">Promotions</p>
+            <div class="dropdown-content">
+              <a href="/buy1get1">Buy1Get1</a>
+              <a href="/discount">50%</a>
+            </div>
+          </li>
         <li>
-          <a href="/login">Log in</a>
+            <a href="/logout">Log out</a>
         </li>
+
       </ul>
-    </nav> 
+    </nav>
   </header>
 
 @yield('content')

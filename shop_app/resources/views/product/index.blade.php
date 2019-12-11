@@ -3,7 +3,7 @@
 @section('content')
 
 <section id="gigs" class="container">
-    <form method="GET" action="products/search" class="search-form">
+    <form method="GET" action="{{action('ProductsController@search')}}" class="search-form">
       <i class="fas fa-search"></i>
       <input type="search" name="search" placeholder="Enter A Product Name">
       <span>
@@ -33,8 +33,10 @@
         </select>
         <br>
         <input type="submit" value="Enter" class="btn btn-reverse">
-        
-    <a href="/products/create" class="btn btn-reverse">Add product</a>
+        @if(stripos(Cookie::get('jobtitle')  , 'Sale'))
+        <a href="/products/create" class="btn btn-reverse">Add product</a>
+        @endif
+    
     </div>
     <br><br>
 
@@ -49,8 +51,11 @@
           <th>productScale</th>
           <th>productLine</th>
           <th>MSRP</th>
+          @if(stripos(Cookie::get('jobtitle')  , 'Sale'))
           <th>Edit</th>
           <th>Delete</th>
+          @endif
+          
       </tr>
         @foreach ($products as $product)
         <tr>
@@ -63,15 +68,18 @@
           <td>{{$product['productScale']}}</td>
           <td>{{$product['productLine']}}</td>
           <td>{{$product['MSRP']}}</td>
-          <td><a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a></td>
-          <td>
-          <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
-          {{csrf_field()}}
-          {{ method_field('DELETE') }} 
-          <input type="hidden" name="_method" value="DELETE" />
-          <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-          </td>
+          @if(stripos(Cookie::get('jobtitle')  , 'Sale'))
+            <td><a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a></td>
+            <td>
+            <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
+            {{csrf_field()}}
+            {{ method_field('DELETE') }} 
+            <input type="hidden" name="_method" value="DELETE" />
+            <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+            </td>
+          @endif
+          
       </tr>  
         
         @endforeach

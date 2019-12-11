@@ -34,7 +34,7 @@ class ProductsController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $products = Products::where('productName','like','%'.$search.'%')->get();
+        $products = Products::where('productName', 'like', '%' . $search . '%')->get();
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
         return view('product.index')

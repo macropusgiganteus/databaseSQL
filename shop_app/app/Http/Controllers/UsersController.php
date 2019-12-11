@@ -47,7 +47,11 @@ class UsersController extends Controller
                 // Cookie::queue(Cookie::make('jobtitle', $jobTitle, 60));
                 $cookieJob = cookie('jobtitle', $jobTitle, 60);
                 $cookieEmp = cookie('employeeNumber', $employeeNumber, 60);
-                $cookieLogin = cookie('layout', '_Login', 60);
+                if($jobTitle == 'VP Marketing'){
+                    $cookieLogin = cookie('layout', '_VPM', 60);
+                }else{
+                    $cookieLogin = cookie('layout', '_Login', 60);
+                } 
                 return redirect()->route('product.index')->cookie($cookieJob)
                     ->cookie($cookieEmp)->cookie($cookieLogin);
             }
