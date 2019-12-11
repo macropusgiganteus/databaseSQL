@@ -33,10 +33,34 @@
 
   <section class="container">
     <table  class="table table-bordered table-striped">
-        <tr>
+        
+        @if($discount == 0)
+          <tr>
             <th><center><h4>Total price:</h4></center></th>
             <th><center><h4>{{ $total }} ฿</h4></center></th>
           </tr>
+        @else
+          
+          <tr>
+            <th><center><h4>Price:</h4></center></th>
+            <th><center><h4>{{ $total }} ฿</h4></center></th>
+          </tr>
+          <tr>
+            <th><center><h4>Discount:</h4></center></th>
+            <th><center><h4>-{{ $discount }} ฿</h4></center></th>
+          </tr>
+          <tr>
+            @if ( ($total -= $discount) < 0)
+              <th><center><h4>Total price:</h4></center></th>
+              <th><center><h4>{{ 0 }} ฿</h4></center></th>
+            @else
+              <th><center><h4>Total price:</h4></center></th>
+              <th><center><h4>{{$total}} ฿</h4></center></th>
+            @endif
+            
+          </tr>
+        @endif 
+ 
     </table>
      
   </section>
@@ -63,10 +87,15 @@
                   <th width="60%"><h4 align="center">Code</h4></th>
                   <th></th>
               </tr>
-              <tr align="center">
-                  <td><input type="text" class="input-box" name="code" id="code"></td>
-                  <td><button  name="useCode" id="useCode" class="btn btn-success">Apply</button></td>
-              </tr>
+              
+                <tr align="center">
+                    @if ($discount == 0)
+                      <td><input type="text" class="input-box" name="code" id="code" value=""></td>
+                      <td><button type="submit" name="action" class="btn btn-success" value="useCode">Apply</button></td>
+                    @else
+                      <td><input type="text" class="input-box" name="code" id="code" value="Code is used" disabled></td>
+                    @endif
+                </tr>
           </table>
         </section>
         
@@ -74,7 +103,7 @@
             <table class="table table-bordered table-striped">
                 <tr align="center">
                   <th width="50%"><a href="/cart/index" name="back" id="back" class="btn btn-danger">Back</a></th>
-                  <th width="50%"><button name="OK" id="OK" class="btn btn-success">Confrim</button></th>
+                  <th width="50%"><button name="action" type="submit" class="btn btn-success" value="Confrim">Confrim</button></th>
                 </tr>
             </table>
           </section>

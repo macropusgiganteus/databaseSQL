@@ -36,14 +36,29 @@ class Discountcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [ 'promotionId' => 'required','count' => 'required' ,'exp' => 'required' ]);
+        $this->validate($request, [ 
+            'PromotionCode' => 'required' ,
+            'Count' => 'required' ,
+            'EXP_date' => 'required' ,
+            'DiscountAmount' => 'required' 
+            ]);
+        
         $promotion = new Discount([
-            'PromotionCode' => $request->get('promotionId'),
-            'Count' => $request->get('count'),
-            'EXP_Date' => $request->get('exp')
+            'PromotionCode' => $request->get('PromotionCode'),
+            'Count' => $request->get('Count'),
+            'EXP_date' => $request->get('EXP_date'),
+            'DiscountAmount' => $request->get('DiscountAmount'),
+            'Create_date' => date('y-m-d')
         ]);
-        $promotion->save();
-        return redirect()->route('discount.create')->with('success','New discount code has been created.');
+        $promotion->timestamps = false;
+        if (!empty($promotion)){
+            $promotion->save();
+            return redirect()->route('discount.index')->with('success','New discount code has been created.');
+        }
+
+               
+        
+        
     }
 
     /**

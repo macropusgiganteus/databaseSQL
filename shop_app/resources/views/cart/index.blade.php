@@ -1,10 +1,9 @@
 @extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','Cart')
 @section('content')
-@php
-    $total = 0
-@endphp
 
+
+{{$total=0}}
 
   <section class="container">
      
@@ -42,6 +41,7 @@
           <th>Total price : {{ $total }} ฿</th>
         </tr>
       </div>
+       
       </table>
      
     </section>
