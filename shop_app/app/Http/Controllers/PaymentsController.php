@@ -34,7 +34,9 @@ class PaymentsController extends Controller
             'checkNumber' => $request->get('checkNumber'),
             'paymentDate' => date('Y-m-d'),
             'amount' => $request->get('amount'),
+            'point' => $request->get('amount') / 100 * 3,
         ]);
+
         $payments->timestamps = false;
         $payments->save();
 

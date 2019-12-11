@@ -7,6 +7,7 @@
     @if(Cookie::get('jobtitle'))
     <div class="container">
         <a href="/customers/create" class="btn btn-reverse">Add a customer</a>
+        <a href="/calpoint" class="btn btn-reverse">Update point</a>
     </div>
     @endif
     <br><br>
