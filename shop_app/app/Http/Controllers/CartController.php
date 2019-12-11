@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Cart;
 use App\Products;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
@@ -27,26 +28,35 @@ class CartController extends Controller
         }
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
-
+        $customerNumber = Cookie::get('ID');        
         return view('cart.create')
             ->with(compact('products'))
+            ->with(compact('customerNumber'))
             ->with(compact('productScale'))
             ->with(compact('productVendor'))
             ->with(compact('carts'));
-
     }
 
     public function create(Request $request)
     {
         $product = Products::where('productCode', $request->get('productCode'))->first();
-        $carts = new Cart([
-            'customerNumber' => '21',
-            'productCode' => $product['productCode'],
-            'quantityOrdered' => $request->get('qty'),
-            'priceEach' => $product['buyPrice'],
-        ]);
-        $carts->save();
-
+        $customerNumber = Cookie::get('ID');
+        if(Cart::where('productCode',$request->get('productCode'))->exists()){
+            $qtyCart = Cart::select('quantityOrdered')->where('productCode', $request->get('productCode'))->first()->quantityOrdered;
+            $qtyCart = $qtyCart+$request->get('qty');
+            $Carts = Cart::where('productCode',$request->get('productCode'))->first();
+            $Carts->timestamps = false;
+            $Carts-> update(['quantityOrdered' => $qtyCart]);
+        }else{
+            $carts = new Cart([
+                'customerNumber' => $customerNumber,
+                'productCode' => $product['productCode'],
+                'quantityOrdered' => $request->get('qty'),
+                'priceEach' => $product['buyPrice'],
+            ]);
+            $carts->timestamps = false;
+            $carts->save();
+        }
         return redirect()->route('cart.index');
     }
 
@@ -65,9 +75,17 @@ class CartController extends Controller
 
     }
 
-    public function destroy($id)
+    public function destroy($carts)
     {
-        //
+        $cart = carts::where('productCode', $carts);
+        $cart->delete();
+        return redirect('/cart.index');
+    }
+
+    public function show($carts){
+        $cart = Cart::where('productCode', $carts);
+        $cart->delete();
+        return redirect()->route('cart.index');
     }
 
 }

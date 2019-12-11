@@ -43,11 +43,20 @@ Route::get('products/search', 'ProductsController@search');
 
 Route::post('/scale', 'ProductsController@scale');
 
-Route::post('/checklist', 'ChecklistCustomerController@checklist');
+//-----------------------------------------------------------
+Route::post('/checklistID', 'ChecklistCustomerController@checklist');
 Route::get('/checklist', function () {
     return view('checklist');
 });
 
+Route::get('/cart/index', 'CartController@index');
+Route::resource('cart', 'CartController');
+//Route::post('/cart/clear','CartController@clear');
+
+// Route::get('/addorder',function(){
+//     return view('addorders');
+// });
+//-----------------------------------------------------------
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
 
@@ -55,6 +64,3 @@ Route::resource('buy1get1', 'Buy1get1controller');
 Route::get('/buy1get1', 'Buy1get1controller@index');
 Route::resource('discount', 'DiscountController');
 
-Route::get('/order/addorders', function () {
-    return view('order.addorders');
-});

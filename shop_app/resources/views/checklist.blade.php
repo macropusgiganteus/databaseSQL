@@ -1,4 +1,4 @@
-@extends('layouts.AllLayout')
+@extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','CustomerID')
 @section('content')
 
@@ -23,10 +23,9 @@
   </section>
 
 
-
 <section id="add" class="container">
     <div class="gig">
-      <form method="post" action={{url('checklist')}}>
+      <form method="post" action="{{action('ChecklistCustomerController@checklist')}}">
         {{csrf_field()}}
         <h2>Customer number</h2>
         <div class="input-group">
