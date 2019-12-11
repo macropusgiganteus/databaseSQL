@@ -1,9 +1,6 @@
 @extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section ('title','Cart')
 @section('content')
-@php
-    $total = 0
-@endphp
 
   <section id="gigs" class="container">
     <form action="/products/search" class="search-form">
@@ -38,20 +35,25 @@
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
-            {{ $total += $item['quantityOrdered'] * $item['priceEach']}}
             <td><a href="{{action('CartController@destroy', $item['productCode'])}}" class="btn btn-danger">Delete</a></td>
         </tr>  
         @endforeach
         <tr>
-          <th>Total price : {{ $total }} ฿</th>
+          <th>Total price : ? ฿</th>
         </tr>
       </div>
       </table>
-      <div class="col-md-6">
-        <button name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</button>
-      </div>
+     
   </section>
   
+  <section class="container">
+    @if (!empty($carts))
+      <div class="col-md-6">
+        <a href="/addRday" name="clear_cart" id="clear_cart" class="btn btn-success">Confirm</a>
+      </div>
+    @endif
+      
+  </section>
 
   <section id="gigs" >
     <form method="GET" action="{{action('CartController@index')}}">
