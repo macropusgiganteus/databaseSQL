@@ -30,7 +30,6 @@ class CartController extends Controller
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
 
-        $customerNumber = Cookie::get('ID');
         return view('cart.index')
             ->with(compact('products'))
             ->with(compact('customerNumber'))

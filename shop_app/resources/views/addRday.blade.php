@@ -1,9 +1,11 @@
 @extends(stripos(Cookie::get('jobtitle')  , 'Sale') ? 'layouts.Layout_Sales' : 'layouts.Layout'.Cookie::get('layout')  )
 @section('title','SHOP')
 @section('content')
-@php
-    $total = 0
-@endphp
+
+<?php
+  $total = 0;
+?>
+
 <section id="gigs" class="container">
     <div class="row">
     <div class="col-md-6"><h2>Order number : # {{$orderNumber}}</h2></div>
@@ -25,7 +27,7 @@
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
-            {{ $total += $item['quantityOrdered'] * $item['priceEach']}}
+            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
         </tr>  
         @endforeach
     </table>
@@ -103,6 +105,7 @@
             <table class="table table-bordered table-striped">
                 <tr align="center">
                   <th width="50%"><a href="/cart/index" name="back" id="back" class="btn btn-danger">Back</a></th>
+                  <input type="hidden" name="total" value="{{$total}}">
                   <th width="50%"><button name="action" type="submit" class="btn btn-success" value="Confrim">Confrim</button></th>
                 </tr>
             </table>

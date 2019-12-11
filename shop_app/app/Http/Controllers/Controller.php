@@ -49,6 +49,8 @@ class Controller extends BaseController
                     ->with(compact('discount'));
             break;
             case 'Confrim':
+                $total = $request->input('total');
+                $cookie = cookie('total',$request->input('total'));
                 $this->validate($request, ['rday' => 'required']);
                 $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
                 $orderNumber += 1;
@@ -79,6 +81,7 @@ class Controller extends BaseController
                     $details->save();
                     $line+=1;
                 }
+                
                 Cart::truncate(); //delete data cart
                 //---------------------
                 
@@ -86,10 +89,13 @@ class Controller extends BaseController
                     ->with(compact('customerNumber'))
                     ->with(compact('carts'))
                     ->with(compact('rday'))
-                    ->with(compact('orderNumber'));
+                    ->with(compact('orderNumber'))
+                    ->with(compact('total'));
             break;
         }
 
      }
+
+
 
 }

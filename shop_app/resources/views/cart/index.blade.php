@@ -2,8 +2,9 @@
 @section ('title','Cart')
 @section('content')
 
-
-{{$total=0}}
+<?php
+  $total = 0;
+?>
 
   <section class="container">
      
@@ -33,7 +34,8 @@
             <td>{{$item['quantityOrdered']}}</td>
             <td>{{$item['priceEach']}}</td>
             <td>{{ $item['quantityOrdered'] * $item['priceEach'] }}</td>
-            {{ $total += $item['quantityOrdered'] * $item['priceEach']}}
+            <input type="hidden" {{$total += $item['quantityOrdered'] * $item['priceEach']}}/>
+      
             <td><a href="{{action('CartController@destroy', $item['productCode'])}}" class="btn btn-danger">Delete</a></td>
         </tr>  
         @endforeach
