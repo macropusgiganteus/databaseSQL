@@ -32,24 +32,32 @@ class Controller extends BaseController
         $orderNumber += 1;
         $customerNumber = Cookie::get('ID');
         $rday = $request->get('rday');
-        $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
         //---------------------
         $order = new Orders([
             'orderNumber' => $orderNumber,
             'orderDate' => date('Y-m-d'),
-            'requiredDate' => $request->get('rday'),
+            'requiredDate' => $rday,
             'customerNumber' => $customerNumber,
         ]);
         $order->timestamps = false;
         $order->save();
+
         // //---------------------
-        // $details = new Orderdetail([
-        //     'orderNumber' =>
-        //     'productcode' =>
-        //     'quantityOrdered' =>
-        //     'priceEach' =>
-        //     'orderLineNumber'=>
-        // ]);
+        $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
+        $line = 1;
+        foreach($carts as $cart){
+             $details = new Orderdetail([
+            'orderNumber' => $orderNumber,
+            'productCode' => $cart['productCode'],
+            'quantityOrdered' => $cart['quantityOrdered'],
+            'priceEach' =>  $cart['priceEach'],
+            'orderLineNumber'=> $line,
+            ]);
+            $details->timestamps = false;
+            $details->save();
+            $line+=1;
+        }
+        Cart::truncate(); //delete data cart
         //---------------------
         $this->validate($request, ['rday' => 'required']);
         return view('addOrder')

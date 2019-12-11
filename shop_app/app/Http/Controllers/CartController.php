@@ -101,6 +101,11 @@ class CartController extends Controller
         return redirect('/cart.index');
     }
 
+    public function clear(){
+        Cart::truncate();
+        return redirect('/cart/index');
+    }
+    
     public function show($carts)
     {
         $cart = Cart::where('productCode', $carts);
