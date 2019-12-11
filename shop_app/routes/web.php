@@ -33,7 +33,7 @@ Route::get('/employees/add', function () {
 });
 
 Route::get('/payments/index', 'PaymentsController@index');
-
+Route::get('/payments/create', 'PaymentsController@create');
 Route::resource('payments', 'PaymentsController');
 
 Route::resource('product', 'ProductsController');

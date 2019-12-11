@@ -54,8 +54,8 @@
         <table class="table table-bordered table-striped">
           <tr align="center">
             <th>
-               <button name="clear_cart" id="clear_cart" class="btn btn-success">Home</button>
-            </th>
+                <button class="btn btn-reverse"><a href="/payments/create">Pay</a></button>
+              </th>
           </tr>
         </table>
       </section>
