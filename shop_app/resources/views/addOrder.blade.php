@@ -32,7 +32,7 @@
     <table  class="table table-bordered table-striped">
         <tr>
             <th>Total price:</th>
-            <th>      ฿</th>
+            <th> {{$total}}    ฿</th>
           </tr>
     </table>
   </section>

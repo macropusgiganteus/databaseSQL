@@ -41,7 +41,7 @@
             <p class="dropbtn">Promotions</p>
             <div class="dropdown-content">
               <a href="/buy1get1">Buy1Get1</a>
-              <a href="/discount">50%</a>
+              <a href="/discount">Discount%</a>
             </div>
           </li>
         <li>

@@ -2,8 +2,18 @@
 @section ('title','SHOP')
 @section('content')
 
+{{-- alert --}}
+<section class="container">
+    @if(\Session::has('success'))
+    <div class="w3-panel w3-green " align="center">
+    <p>{{\Session::get('success')}}</p>
+    </div>
+    @endif
+
+</section>
+
 <div class="container">
-    <h1>Promotion : 50%discount </h1>
+    <h1>Promotion : Discount% </h1>
     <button class="btn btn-reverse"><a href="/discount/create">Add Discount Code</a></button>
 </div>
 <section id="gigs" class="container">
@@ -20,7 +30,7 @@
             <tr>
                 <td>{{$row['PromotionCode']}}</td>
                 <td>{{$row['Count']}}</td>
-                <td>{{$row['created_at']}}</td>
+                <td>{{$row['Create_date']}}</td>
                 <td>{{$row['EXP_date']}}</td>
                 {{-- <td><a href="{{action('StockInController@edit', $row['id'])}}" class="btn btn-primary">Edit</a></td> --}}
                 <td>

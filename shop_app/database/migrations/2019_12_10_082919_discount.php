@@ -17,8 +17,9 @@ class Discount extends Migration
             $table->bigIncrements('id');
             $table->string('PromotionCode');
             $table->integer('Count');
-            $table->timestamps();
             $table->date('EXP_date');
+            $table->date('Create_date');
+            $table->integer('DiscountAmount');
         });
     }
 

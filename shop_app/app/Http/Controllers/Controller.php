@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cart;
 use App\Customers;
+use App\Discount;
 use App\Orderdetail;
 use App\Orders;
 use App\payments;
@@ -20,6 +21,8 @@ class Controller extends BaseController
 
     public function addrequiredDay()
     {
+        $discount = 0;
+
         $customerNumber = Cookie::get('ID');
         $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
         $orderNumber += 1;
@@ -27,47 +30,74 @@ class Controller extends BaseController
         return view('addRday')
             ->with(compact('customerNumber'))
             ->with(compact('carts'))
-            ->with(compact('orderNumber'));
+            ->with(compact('orderNumber'))
+            ->with(compact('discount'));
     }
+
     public function addOrder(Request $request)
     {
-        $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
-        $orderNumber += 1;
-        $customerNumber = Cookie::get('ID');
-        $rday = $request->get('rday');
-        //---------------------
-        $order = new Orders([
-            'orderNumber' => $orderNumber,
-            'orderDate' => date('Y-m-d'),
-            'requiredDate' => $rday,
-            'customerNumber' => $customerNumber,
-        ]);
-        $order->timestamps = false;
-        $order->save();
 
-        // //---------------------
-        $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
-        $line = 1;
-        foreach ($carts as $cart) {
-            $details = new Orderdetail([
-                'orderNumber' => $orderNumber,
-                'productCode' => $cart['productCode'],
-                'quantityOrdered' => $cart['quantityOrdered'],
-                'priceEach' => $cart['priceEach'],
-                'orderLineNumber' => $line,
-            ]);
-            $details->timestamps = false;
-            $details->save();
-            $line += 1;
+        switch ($request->input('action')) {
+            case 'useCode':
+                $this->validate($request, ['code' => 'required']);
+                $code = Discount::where('PromotionCode', $request->get('code'))->get();
+                $discount = $code->first()->DiscountAmount;
+                $customerNumber = Cookie::get('ID');
+                $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
+                $orderNumber += 1;
+                $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
+                return view('addRday')
+                    ->with(compact('customerNumber'))
+                    ->with(compact('carts'))
+                    ->with(compact('orderNumber'))
+                    ->with(compact('discount'));
+                break;
+            case 'Confrim':
+                $total = $request->input('total');
+                $cookie = cookie('total', $request->input('total'));
+                $this->validate($request, ['rday' => 'required']);
+                $orderNumber = Orders::latest('orderNumber')->first()->orderNumber;
+                $orderNumber += 1;
+                $customerNumber = Cookie::get('ID');
+                $rday = $request->get('rday');
+                //---------------------
+                $order = new Orders([
+                    'orderNumber' => $orderNumber,
+                    'orderDate' => date('Y-m-d'),
+                    'requiredDate' => $rday,
+                    'customerNumber' => $customerNumber,
+                ]);
+                $order->timestamps = false;
+                $order->save();
+
+                // //---------------------
+                $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
+                $line = 1;
+                foreach ($carts as $cart) {
+                    $details = new Orderdetail([
+                        'orderNumber' => $orderNumber,
+                        'productCode' => $cart['productCode'],
+                        'quantityOrdered' => $cart['quantityOrdered'],
+                        'priceEach' => $cart['priceEach'],
+                        'orderLineNumber' => $line,
+                    ]);
+                    $details->timestamps = false;
+                    $details->save();
+                    $line += 1;
+                }
+
+                Cart::truncate(); //delete data cart
+                //---------------------
+
+                return view('addOrder')
+                    ->with(compact('customerNumber'))
+                    ->with(compact('carts'))
+                    ->with(compact('rday'))
+                    ->with(compact('orderNumber'))
+                    ->with(compact('total'));
+                break;
         }
-        Cart::truncate(); //delete data cart
-        //---------------------
-        $this->validate($request, ['rday' => 'required']);
-        return view('addOrder')
-            ->with(compact('customerNumber'))
-            ->with(compact('carts'))
-            ->with(compact('rday'))
-            ->with(compact('orderNumber'));
+
     }
 
     public function calpoint()
