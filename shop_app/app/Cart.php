@@ -9,5 +9,5 @@ class Cart extends Model
     protected $table = 'carts';
     protected $keyType = 'string';
     protected $primaryKey = 'productCode';
-    protected $fillable = ['customerNumber', 'productCode', 'quantityOrdered', 'priceEach'];
+    protected $fillable = ['productName','customerNumber', 'productCode', 'quantityOrdered', 'priceEach'];
 }

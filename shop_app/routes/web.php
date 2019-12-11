@@ -54,9 +54,8 @@ Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');
 //Route::post('/cart/clear','CartController@clear');
 
-// Route::get('/addorder',function(){
-//     return view('addorders');
-// });
+Route::get('/addRday','Controller@addrequiredDay');
+Route::post('/addOrder/success','Controller@addOrder');
 //-----------------------------------------------------------
 Route::get('/cart/index', 'CartController@index');
 Route::resource('cart', 'CartController');

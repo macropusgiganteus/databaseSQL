@@ -12,7 +12,8 @@ class CartController extends Controller
 
     public function index(Request $request)
     {
-        $carts = Cart::all()->toArray();
+        $customerNumber = Cookie::get('ID');   
+        $carts = Cart::where('customerNumber', $customerNumber)->get()->toArray();
         if (empty($request->input('scale')) && empty($request->input('vendor'))) {
             $products = Products::all()->toArray();
         } elseif (!empty($request->input('scale')) && empty($request->input('vendor'))) {
@@ -28,6 +29,10 @@ class CartController extends Controller
         }
         $productScale = Products::select('productScale')->distinct()->get();
         $productVendor = Products::select('productVendor')->distinct()->get();
+
+           
+        return view('cart.create')
+
         $customerNumber = Cookie::get('ID');
         return view('cart.index')
             ->with(compact('products'))
@@ -65,6 +70,7 @@ class CartController extends Controller
             $Carts->update(['quantityOrdered' => $qtyCart]);
         } else {
             $carts = new Cart([
+                'productName' => $product['productName'],
                 'customerNumber' => $customerNumber,
                 'productCode' => $product['productCode'],
                 'quantityOrdered' => $request->get('qty'),
