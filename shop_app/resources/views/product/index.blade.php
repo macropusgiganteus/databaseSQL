@@ -94,7 +94,7 @@
           <td>{{$product['productScale']}}</td>
           <td>{{$product['productLine']}}</td>
           <td>{{$product['MSRP']}}</td>
-          @if(Cookie::get('jobtitle'))
+          @if(stripos(Cookie::get('jobtitle')  , 'Sale'))
             <td><a href="{{action('ProductsController@edit', $product['productCode'])}}" class="btn btn-primary">Edit</a></td>
             <td>
             <form method="post" class="delete_form" action="{{action('ProductsController@destroy', $product['productCode'])}}">
