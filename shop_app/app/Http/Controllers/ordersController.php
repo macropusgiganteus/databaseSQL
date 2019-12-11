@@ -10,6 +10,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Orders::all()->toArray();
+        $this->shipped();
         return view('order.index')
         ->with(compact('orders'));
     }
@@ -24,6 +25,16 @@ class OrdersController extends Controller
         $order->update();
 
         return redirect()->back()->with('success','New discount code has been created.');
+    }
 
+    public function shipped()
+    {
+        $inProcess = Orders::where('status' , '=' , 'in process')->get();
+        if(Orders::where('status',$inProcess)){
+        $order = Orders::where('shippedDate' , '>=' , date('Y-m-d'))->get();
+        $order->status = 'Shipped'; 
+        }
+        return $order;
+        $order->update(); 
     }
 }
