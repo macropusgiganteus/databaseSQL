@@ -30,7 +30,9 @@ class PaymentsController extends Controller
             'customerNumber' => 'required',
             'checkNumber' => 'required',
             'amount' => 'required']);
-        $point = $request->get('amount') / 100 * 3;
+            $point =  $request->get('amount') / 100 ;
+            $point = floor($point) * 3;
+
         $payments = new Payments([
             'customerNumber' => $request->get('customerNumber'),
             'checkNumber' => $request->get('checkNumber'),

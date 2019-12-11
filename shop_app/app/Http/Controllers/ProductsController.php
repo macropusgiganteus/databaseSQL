@@ -79,8 +79,8 @@ class ProductsController extends Controller
     }
 
     public function destroy($productCode)
-    {
-        $product = Products::where('productCode', $productCode)->first();
+    { 
+        $product = Products::where('productCode', $productCode)->get()->first();
         $product->delete();
         return redirect()->route('product.index')->with('success', 'This products have been deleted!');
     }

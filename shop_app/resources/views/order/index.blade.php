@@ -5,6 +5,7 @@
 <section>
     <h1 class="container">Orders</h1>
     <br><br>
+    {{-- <a href="/orders/calpoint" onclick="" class="btn btn-reverse">Update point</a> --}}
     <table  class="table table-bordered table-striped">
         <tr>
             <th>orderNumber</th>
@@ -14,6 +15,7 @@
             <th>status</th>
             <th>comments</th>
             <th>customerNumber</th>
+            <th>Earn Point</th>
             <th>update</th>
         </tr>
 
@@ -36,6 +38,7 @@
             </td>
             <td><input name="comments" type="text" value ="{{$order['comments']}}"></td>
             <td>{{$order['customerNumber']}}</td>
+            <td>{{$order['point']}}</td>
             <td>
                     {{csrf_field()}}
                     <input type="hidden" name="orderNumber" value="{{$order['orderNumber']}}"/>
@@ -45,6 +48,7 @@
         </tr>
         @endforeach
     </table>
+    
 
 </section>
 @endsection
