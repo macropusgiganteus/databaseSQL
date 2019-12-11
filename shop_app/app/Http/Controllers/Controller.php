@@ -75,7 +75,8 @@ class Controller extends BaseController
         $point = payments::select('*')->get()->toArray();
         foreach ($point as $cus) {
             $amount = $cus['amount'];
-            $amount = ($amount / 100) * 3;
+            $amount = ($amount / 100);
+            $amount = floor($amount) * 3;
             $amount = intval($amount);
             $pay = payments::where('checkNumber', $cus['checkNumber'])->get()->first();
             $pay->point = $amount;
