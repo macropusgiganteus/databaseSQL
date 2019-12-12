@@ -7,7 +7,7 @@
     @if(Cookie::get('jobtitle'))
     <div class="container">
         <a href="/customers/create" class="btn btn-reverse">Add a customer</a>
-        <a href="/calpoint" class="btn btn-reverse">Update point</a>
+        {{-- <a href="/calpoint" class="btn btn-reverse">Update point</a> --}}
     </div>
     @endif
     <br><br>
@@ -29,9 +29,7 @@
         <th>creditLimit</th>
         <th>memberPoint</th>
         @if(Cookie::get('jobtitle'))
-
-        <th>Edit</th>
-        <th>Delete</th>
+        {{-- <th>Delete</th> --}}
         @endif
     </tr>
     @foreach ($customers as $customer)
@@ -50,8 +48,7 @@
       <td>{{$customer['salesRepEmployeeNumber']}}</td>
       <td>{{$customer['creditLimit']}}</td>
       <td>{{$customer['sumpoint']}}</td>
-      @if(Cookie::get('jobtitle'))
-      <td><a href="{{action('CustomersController@edit', $customer['customerNumber'])}}" class="btn btn-primary">Edit</a></td>
+      {{-- @if(Cookie::get('jobtitle'))
       <td>
       <form method="post" class="delete_form" action="{{action('CustomersController@destroy', $customer['customerNumber'])}}">
       {{csrf_field()}}
@@ -60,7 +57,7 @@
       <button type="submit" class="btn btn-danger">Delete</button>
       </form>
       </td>
-      @endif
+      @endif --}}
   </tr>  
   @endforeach
 </table>
