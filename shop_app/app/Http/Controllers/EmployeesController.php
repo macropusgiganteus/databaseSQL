@@ -21,7 +21,7 @@ class EmployeesController extends Controller
                 $below = ['Sales Manager (APAC)', 'Sale Manager (EMEA)', 'Sales Manager (NA)', 'Sales Rep'];
                 break;
             case ('VP Marketing'):
-                $below = [];
+                $below = ['Sales Manager (APAC)', 'Sale Manager (EMEA)', 'Sales Manager (NA)', 'Sales Rep'];
                 break;
             case ('Sales Manager (APAC)'):
                 $below = ['Sales Rep'];
@@ -69,7 +69,8 @@ class EmployeesController extends Controller
 
         return redirect('/employees');
     }
-    public function show(){
+    public function show()
+    {
         return view('employee.addemployees');
     }
     public function edit($employeeNumber)
