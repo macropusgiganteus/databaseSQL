@@ -5,7 +5,9 @@
 <section>
     <h1 class="container">Orders</h1>
     <div class="container">
+            @if(Cookie::get('jobtitle'))
             <a href="/orders/calpoint" onclick="" class="btn btn-reverse ">Update point</a>
+            @endif
     </div>
     <br>
     <table  class="table table-bordered table-striped">

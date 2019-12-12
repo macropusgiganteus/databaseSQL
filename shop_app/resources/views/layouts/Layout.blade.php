@@ -41,9 +41,9 @@
             <a href="/discount">Discount</a>
           </div>
         </li>
-        <li>
+        {{-- <li>
           <a href="/checklist"><span class="fas fa-cart-plus"></span></a>
-        </li>    
+        </li>     --}}
         <li>
           <a href="/login">Log in</a>
         </li>
