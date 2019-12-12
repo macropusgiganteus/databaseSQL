@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class StockinTable extends Migration
+class DefaultStatus extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class StockinTable extends Migration
      */
     public function up()
     {
-        Schema::create('instock', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('productID');
-            $table->integer('amount');
-            $table->timestamps();
+
+        // !!!!! RUN THIS CODE BEFORE MIGRATE ---> composer require doctrine/dbal  <--- !!!!
+        Schema::table('orders', function (Blueprint $table) {
+            $table->string('status')->default('In process')->change();
         });
     }
 
@@ -28,6 +27,6 @@ class StockinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instock');
+        //
     }
 }

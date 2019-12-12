@@ -20,6 +20,7 @@ class CreateCartTable extends Migration
             $table->integer('quantityOrdered');
             $table->integer('priceEach');
             $table->timestamps();
+            $table->primary(array('customerNumber', 'productCode'));
         });
     }
 
@@ -30,6 +31,6 @@ class CreateCartTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cart');
+        Schema::dropIfExists('carts');
     }
 }

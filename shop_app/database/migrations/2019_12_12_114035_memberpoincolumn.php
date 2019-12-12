@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class StockinTable extends Migration
+class Memberpoincolumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class StockinTable extends Migration
      */
     public function up()
     {
-        Schema::create('instock', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('productID');
-            $table->integer('amount');
-            $table->timestamps();
+        Schema::table('customers', function (Blueprint $table) {
+            $table->integer('sumpoint')->after('creditLimit')->default(0);
         });
     }
 
@@ -28,6 +25,6 @@ class StockinTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('instock');
+        //
     }
 }
