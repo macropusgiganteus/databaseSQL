@@ -35,6 +35,13 @@
             <a href="/payments/index">Payments</a>
           </div>
         </li> 
+        <li class="dropdown">
+          <p class="dropbtn">Promotions</p>
+          <div class="dropdown-content">
+            <a href="/buy1get1">Buy1Get1</a>
+            <a href="/discount">Discount</a>
+          </div>
+        </li>
         <li>
           <a href="/checklist"><span class="fas fa-cart-plus"></span></a>
         </li> 

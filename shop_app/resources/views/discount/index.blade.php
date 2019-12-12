@@ -13,8 +13,10 @@
 </section>
 
 <div class="container">
-    <h1>Promotion : Discount% </h1>
+    <h1>Promotion : Discount </h1>
+    @if(stripos(Cookie::get('jobtitle')  , 'Market'))
     <button class="btn btn-reverse"><a href="/discount/create">Add Discount Code</a></button>
+    @endif
 </div>
 <section id="gigs" class="container">
         <table class="table table-bordered table-striped">

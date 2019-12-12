@@ -3,7 +3,9 @@
 @section('content')
 <div class="container">
     <h1>Promotion : Buy 1 Get 1 </h1>
+    @if(stripos(Cookie::get('jobtitle')  , 'Market'))
     <button class="btn btn-reverse"><a href="/buy1get1/create">Add Product</a></button>
+    @endif
 </div>
 <section id="gigs" class="container">
     <table class="table table-bordered table-striped">

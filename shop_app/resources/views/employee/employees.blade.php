@@ -20,9 +20,10 @@
         <th>reportsTo</th>
         <th>extension</th>
         <th>jobTitle</th>
+        @if(Cookie::get('jobtitle'))
         <th>Promote/Demote</th>
-        {{-- <th>Edit</th> --}}
         <th>Delete</th>
+        @endif
     </tr>
     @foreach ($employees as $employee)
     <tr>
@@ -62,10 +63,6 @@
           <button type="submit" class="btn btn-danger">Delete</button>
           </form>
           </td>
-      @else
-        <td></td>
-        <td></td>
-        <td></td>
       @endif
       
   </tr>  

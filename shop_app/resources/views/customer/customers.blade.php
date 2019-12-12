@@ -27,7 +27,7 @@
         <th>country</th>
         <th>salesRepEmployeeNumber</th>
         <th>creditLimit</th>
-        <th>sumpoint</th>
+        <th>memberPoint</th>
         @if(Cookie::get('jobtitle'))
 
         <th>Edit</th>

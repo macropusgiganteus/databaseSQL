@@ -4,8 +4,10 @@
 
 <section>
     <h1 class="container">Orders</h1>
-    <br><br>
-    <a href="/orders/calpoint" onclick="" class="btn btn-reverse">Update point</a>
+    <div class="container">
+            <a href="/orders/calpoint" onclick="" class="btn btn-reverse ">Update point</a>
+    </div>
+    <br>
     <table  class="table table-bordered table-striped">
         <tr>
             <th>orderNumber</th>
@@ -16,7 +18,9 @@
             <th>comments</th>
             <th>customerNumber</th>
             <th>Earn Point</th>
+            @if(Cookie::get('jobtitle'))
             <th>update</th>
+            @endif
         </tr>
 
         @foreach ($orders as $order)
@@ -25,9 +29,15 @@
             <td>{{$order['orderDate']}}</td>
             <td>{{$order['requiredDate']}}</td>
             <form method="post"  action="{{action('OrdersController@status')}}">
-            <td><input name="shippedDate" type="date" value ="{{$order['shippedDate']}}"></td>
+            <td><input name="shippedDate" type="date" value ="{{$order['shippedDate']}}" 
+                @if(Cookie::get('jobtitle') ==false)
+                disabled="disable"
+                @endif></td>
             <td >
-                <select name="status" id="status" class="form-control vendor">
+                <select name="status" id="status" class="form-control vendor"
+                @if(Cookie::get('jobtitle') ==false)
+                disabled="disable"
+                @endif>
                 <option value="{{$order['status']}}">{{$order['status']}}</option>
                 <option value="resolved">resolved</option>
                 <option value="on hold">on hold</option>
@@ -36,14 +46,19 @@
                 <option value="cancelled">cancelled</option>
                 </select>
             </td>
-            <td><input name="comments" type="text" value ="{{$order['comments']}}"></td>
+            <td><input name="comments" type="text" value ="{{$order['comments']}}"
+                @if(Cookie::get('jobtitle')== false)
+                disabled="disable"
+                @endif></td>
             <td>{{$order['customerNumber']}}</td>
             <td>{{$order['point']}}</td>
+            @if(Cookie::get('jobtitle'))
             <td>
                     {{csrf_field()}}
                     <input type="hidden" name="orderNumber" value="{{$order['orderNumber']}}"/>
                     <button type="submit" class="btn btn-primary">OK</button>
             </td>
+            @endif
             </form>
         </tr>
         @endforeach

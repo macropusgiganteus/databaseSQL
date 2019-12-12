@@ -15,6 +15,7 @@ class DefaultStatus extends Migration
     {
 
         // !!!!! RUN THIS CODE BEFORE MIGRATE ---> composer require doctrine/dbal  <--- !!!!
+        
         Schema::table('orders', function (Blueprint $table) {
             $table->string('status')->default('In process')->change();
         });
